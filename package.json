@@ -15,6 +15,7 @@
   "homepage": "https://bitbucket.org/Margatroid/new-website#readme",
   "private": true,
   "devDependencies": {
+    "babel-loader": "^5.3.2",
     "eslint": "^1.7.3",
     "eslint-plugin-react": "^3.6.3",
     "webpack": "^1.12.2"
