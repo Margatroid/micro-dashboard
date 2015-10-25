@@ -13,5 +13,8 @@
   "author": "Alvis Duong",
   "license": "ISC",
   "homepage": "https://bitbucket.org/Margatroid/new-website#readme",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "webpack": "^1.12.2"
+  }
 }
