@@ -16,6 +16,7 @@
   "private": true,
   "devDependencies": {
     "eslint": "^1.7.3",
+    "eslint-plugin-react": "^3.6.3",
     "webpack": "^1.12.2"
   }
 }
