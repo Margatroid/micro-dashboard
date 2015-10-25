@@ -4,7 +4,8 @@
   "description": "A react template that also serves a secondary purpose as my new homepage.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot --inline"
   },
   "repository": {
     "type": "git",
