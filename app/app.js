@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppBar } from 'material-ui'
+import Layout from './layout'
 
 ReactDOM.render(
-  <AppBar title='Micro dashboard'/>,
+  <Layout/>,
   document.getElementById('app-container')
 )
 
