@@ -3,6 +3,12 @@ import { AppBar, FontIcon, Styles, Tabs, Tab } from 'material-ui'
 const { Colors } = Styles
 
 export default React.createClass({
+  displayName: 'Layout',
+
+  _handleTabChange: function(value, e, tab) {
+    this.props.history.pushState(null, tab.props.route)
+  },
+
   render: function() {
     const iconStyle = {
       marginTop: 11,
@@ -18,12 +24,15 @@ export default React.createClass({
 
     return <div>
       <AppBar style={appBarStyle} zDepth={0} iconElementLeft={icon} title='Micro dashboard'>
-	<Tabs style={{width: 400}}>
-          <Tab label='EXPLORER' />
-          <Tab label='QUERY TOOL' />
-          <Tab label='API' />
+	<Tabs onChange={this._handleTabChange} style={{width: 400}}>
+          <Tab label='EXPLORER' route='/explorer' />
+          <Tab label='QUERY TOOL' route='/query' />
 	</Tabs>
       </AppBar>
+
+      <div style={{marginTop: 64}}>
+        {this.props.children}
+      </div>
     </div>
   }
 })
