@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { IndexRoute, Router, Route } from 'react-router'
 import Layout from './layout'
-import Explorer from './components/explorer'
+import Explorer from './containers/explorer'
 import Query from './components/query'
 import InjectTapEventPlugin from 'react-tap-event-plugin'
 
