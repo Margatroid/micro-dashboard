@@ -1,7 +1,7 @@
 {
-  "name": "new-website",
+  "name": "micro-dashboard",
   "version": "0.1.0",
-  "description": "A react template that also serves a secondary purpose as my new homepage.",
+  "description": "Web-based dashboard microservices toolchain micro.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
