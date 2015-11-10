@@ -1,12 +1,15 @@
 import React from 'react'
 import { AppBar, FontIcon, Styles, Tabs, Tab } from 'material-ui'
+import { pushState } from 'redux-router'
+import { connect } from 'react-redux'
 const { Colors } = Styles
 
-export default React.createClass({
+const Layout = React.createClass({
   displayName: 'Layout',
 
   _handleTabChange: function(value, e, tab) {
-    this.props.history.pushState(null, tab.props.route)
+    const { dispatch } = this.props
+    dispatch(pushState(null, tab.props.route))
   },
 
   render: function() {
@@ -36,3 +39,9 @@ export default React.createClass({
     </div>
   }
 })
+
+function select(state) {
+  return state
+}
+
+export default connect(select)(Layout)
