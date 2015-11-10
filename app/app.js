@@ -6,13 +6,13 @@ import Explorer from './containers/explorer'
 import Query from './components/query'
 import InjectTapEventPlugin from 'react-tap-event-plugin'
 
-import MicroDashboardApp from './reducers'
+import allReducers from './reducers'
 import { createStore, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { ReduxRouter, reduxReactRouter } from 'redux-router'
 import { createHistory } from 'history'
 
-const store = compose(reduxReactRouter({ createHistory }))(createStore)(MicroDashboardApp)
+const store = compose(reduxReactRouter({ createHistory }))(createStore)(allReducers)
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
