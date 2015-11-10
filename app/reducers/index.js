@@ -1,10 +1,8 @@
 import { REQUEST_REGISTRY } from '../actions'
+import { combineReducers } from 'redux'
+import { routerStateReducer } from 'redux-router'
 
-const initialState = {
-  serviceNames: []
-}
-
-export default function MicroDashboardApp(state = initialState, action) {
+function RegistryReducer(state = {serviceNames: []}, action) {
   switch (action.type) {
     case REQUEST_REGISTRY:
       return Object.assign({}, state, {
@@ -14,3 +12,10 @@ export default function MicroDashboardApp(state = initialState, action) {
       return state
   }
 }
+
+const MicroDashboardApp = combineReducers({
+  registry: Registry,
+  router: routerStateReducer
+})
+
+export default MicroDashboardApp
