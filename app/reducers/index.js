@@ -1,21 +1,40 @@
-import { REQUEST_REGISTRY } from '../actions'
+import { REQUEST_REGISTRY, RECEIVE_REGISTRY } from '../actions'
 import { combineReducers } from 'redux'
 import { routerStateReducer } from 'redux-router'
 
-function RegistryReducer(state = {serviceNames: []}, action) {
+/*  State map:
+ *
+ *  {
+ *    router: {},
+ *    registry: {
+ *      serviceNames: [],
+ *      isFetching: false
+ *    }
+ *  }
+ */
+
+function RegistryReducer(state = {
+  serviceNames: [],
+  isFetching: false
+}, action) {
   switch (action.type) {
     case REQUEST_REGISTRY:
       return Object.assign({}, state, {
-        serviceNames: ['LOLTEST']
+        isFetching: true
+      })
+    case RECEIVE_REGISTRY:
+      return Object.assign({}, state, {
+        isFetching: false,
+        serviceNames: action.serviceNames
       })
     default:
       return state
   }
 }
 
-const allReducers = combineReducers({
+const rootReducer = combineReducers({
   registry: RegistryReducer,
   router: routerStateReducer
 })
 
-export default allReducers
+export default rootReducer

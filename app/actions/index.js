@@ -1,4 +1,4 @@
-//import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch'
 
 export const REQUEST_REGISTRY = 'REQUEST_REGISTRY'
 export function requestRegistry() {
@@ -12,5 +12,17 @@ export function receiveRegistry(registry) {
   return {
     type: RECEIVE_REGISTRY,
     registry: registry
+  }
+}
+
+export function fetchRegistry() {
+  return function (dispatch) {
+    dispatch(requestRegistry)
+
+    return fetch('//localhost:8080/dashboard/registry/all')
+      .then(response => response.json())
+      .then(json =>
+        dispatch(receiveRegistry(json))
+      )
   }
 }
