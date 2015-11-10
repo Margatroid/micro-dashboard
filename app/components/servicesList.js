@@ -6,7 +6,7 @@ const ServicesList = React.createClass({
   displayName: 'ServicesList',
 
   render: function() {
-    const { dispatch, serviceNames } = this.props
+    const { dispatch, registry } = this.props
 
     return <div>
       List of services
@@ -14,7 +14,7 @@ const ServicesList = React.createClass({
         Dispatch
       </span>
 
-      { serviceNames }
+      {registry.serviceNames}
     </div>
   }
 })

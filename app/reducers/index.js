@@ -14,7 +14,7 @@ function RegistryReducer(state = {serviceNames: []}, action) {
 }
 
 const MicroDashboardApp = combineReducers({
-  registry: Registry,
+  registry: RegistryReducer,
   router: routerStateReducer
 })
 
