@@ -23,11 +23,11 @@ export default React.createClass({
 
     return <div>
       <List subheader='Services'>
-        {this.props.registry.serviceNames.map((name) =>
+        {this.props.registry.services.map((service) =>
           <ListItem
-            key={name}
+            key={service.Name}
             leftAvatar={serviceIcon}
-            primaryText={name}
+            primaryText={service.Name}
             secondaryText='Something something description' />
         )}
       </List>

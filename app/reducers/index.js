@@ -7,14 +7,14 @@ import { routerStateReducer } from 'redux-router'
  *  {
  *    router: {},
  *    registry: {
- *      serviceNames: [],
+ *      services: [],
  *      isFetching: false
  *    }
  *  }
  */
 
 function RegistryReducer(state = {
-  serviceNames: [],
+  services: [],
   isFetching: false
 }, action) {
   switch (action.type) {
@@ -25,7 +25,7 @@ function RegistryReducer(state = {
     case RECEIVE_REGISTRY:
       return Object.assign({}, state, {
         isFetching: false,
-        serviceNames: action.registry
+        services: action.registry
       })
     default:
       return state
