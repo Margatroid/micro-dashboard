@@ -42,7 +42,7 @@ const Explorer = React.createClass({
 
     let body
     if (this.props.children) {
-      body = <Service />
+      body = <Service name={this.props.params.name} />
     } else {
       body = <ServicesList registry={this.props.registry}
         onServiceClick={this._onServiceClick}

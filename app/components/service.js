@@ -4,6 +4,6 @@ export default React.createClass({
   displayName: 'Service',
 
   render: function() {
-    return <div>Service</div>
+    return <div>{this.props.name}</div>
   }
 })
