@@ -1,12 +1,18 @@
 import React from 'react'
 import { Paper, Styles } from 'material-ui'
+import { connect } from 'react-redux'
+import { fetchRegistry } from '../actions'
 
 import ServicesList from '../components/servicesList'
 
 const Typography = Styles.Typography
 
-export default React.createClass({
+const Explorer = React.createClass({
   displayName: 'Explorer',
+
+  _loadServiceNames: function() {
+    this.props.dispatch(fetchRegistry())
+  },
 
   render: function() {
     const styles = {
@@ -32,8 +38,14 @@ export default React.createClass({
       <h1 style={styles.header}>Registry</h1>
 
       <Paper style={styles.paper} zDepth={1} rounded={false}>
-        <ServicesList/>
+        <ServicesList registry={this.props.registry}
+          onComponentDidMount={this._loadServiceNames} />
       </Paper>
     </section>
   }
 })
+
+function select(state) {
+  return { registry: state.registry }
+}
+export default connect(select)(Explorer)

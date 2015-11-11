@@ -25,7 +25,7 @@ function RegistryReducer(state = {
     case RECEIVE_REGISTRY:
       return Object.assign({}, state, {
         isFetching: false,
-        serviceNames: action.serviceNames
+        serviceNames: action.registry
       })
     default:
       return state

@@ -40,8 +40,4 @@ const Layout = React.createClass({
   }
 })
 
-function select(state) {
-  return state
-}
-
-export default connect(select)(Layout)
+export default connect()(Layout)
