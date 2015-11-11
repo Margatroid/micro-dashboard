@@ -7,7 +7,8 @@ export default React.createClass({
 
   propTypes: {
     registry: React.PropTypes.object.isRequired,
-    onComponentDidMount: React.PropTypes.func.isRequired
+    onComponentDidMount: React.PropTypes.func.isRequired,
+    onServiceClick: React.PropTypes.func.isRequired
   },
 
   componentDidMount: function() {
@@ -28,6 +29,7 @@ export default React.createClass({
             key={service.Name}
             leftAvatar={serviceIcon}
             primaryText={service.Name}
+            onClick={() => {this.props.onServiceClick(service.Name)}}
             secondaryText='Something something description' />
         )}
       </List>

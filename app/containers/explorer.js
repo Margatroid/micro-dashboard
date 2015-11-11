@@ -2,7 +2,9 @@ import React from 'react'
 import { Paper, Styles } from 'material-ui'
 import { connect } from 'react-redux'
 import { fetchRegistry } from '../actions'
+import { pushState } from 'redux-router'
 
+import Service from '../components/service'
 import ServicesList from '../components/servicesList'
 
 const Typography = Styles.Typography
@@ -12,6 +14,10 @@ const Explorer = React.createClass({
 
   _loadServiceNames: function() {
     this.props.dispatch(fetchRegistry())
+  },
+
+  _onServiceClick: function(name) {
+    this.props.dispatch(pushState(null, `/explorer/${name}`))
   },
 
   render: function() {
@@ -34,13 +40,18 @@ const Explorer = React.createClass({
       }
     }
 
+    let body
+    if (this.props.children) {
+      body = <Service />
+    } else {
+      body = <ServicesList registry={this.props.registry}
+        onServiceClick={this._onServiceClick}
+        onComponentDidMount={this._loadServiceNames} />
+    }
+
     return <section style={styles.wrapper}>
       <h1 style={styles.header}>Registry</h1>
-
-      <Paper style={styles.paper} zDepth={1} rounded={false}>
-        <ServicesList registry={this.props.registry}
-          onComponentDidMount={this._loadServiceNames} />
-      </Paper>
+      <Paper style={styles.paper} zDepth={1} rounded={false}>{body}</Paper>
     </section>
   }
 })

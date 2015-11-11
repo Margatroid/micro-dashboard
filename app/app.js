@@ -4,6 +4,7 @@ import { IndexRoute, Route } from 'react-router'
 import Layout from './layout'
 import Explorer from './containers/explorer'
 import Query from './components/query'
+import Service from './components/service'
 import InjectTapEventPlugin from 'react-tap-event-plugin'
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
@@ -33,7 +34,11 @@ ReactDOM.render(
       <ReduxRouter>
         <Route path='/' component={Layout}>
           <IndexRoute component={Explorer} />
-          <Route path='explorer' component={Explorer} />
+
+          <Route path='explorer' component={Explorer} >
+            <Route path=':serviceName' component={Service} />
+          </Route>
+
           <Route path='query' component={Query} />
         </Route>
       </ReduxRouter>
