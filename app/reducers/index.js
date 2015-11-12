@@ -13,7 +13,7 @@ import { routerStateReducer } from 'redux-router'
  *  }
  */
 
-function RegistryReducer(state = {
+function registryReducer(state = {
   services: [],
   isFetching: false
 }, action) {
@@ -33,7 +33,7 @@ function RegistryReducer(state = {
 }
 
 const rootReducer = combineReducers({
-  registry: RegistryReducer,
+  registry: registryReducer,
   router: routerStateReducer
 })
 
