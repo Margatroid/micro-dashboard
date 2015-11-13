@@ -21,8 +21,14 @@ export function fetchRegistry() {
 
     return fetch('//localhost:8080/dashboard/registry/all')
       .then(response => response.json())
-      .then(json =>
-        dispatch(receiveRegistry(json))
-      )
+      .then(json => {
+        // Restructure the data a little
+        let registry = new Map()
+        json.forEach((service) => {
+          registry.set(service.Name, service)
+        })
+
+        dispatch(receiveRegistry(registry))
+      })
   }
 }

@@ -22,14 +22,19 @@ export default React.createClass({
       widgets
     </FontIcon>
 
+    let services = []
+    for (let name of this.props.registry.services.keys()) {
+      services.push(name)
+    }
+
     return <div>
       <List subheader='Services'>
-        {this.props.registry.services.map((service) =>
+        {services.map((name) =>
           <ListItem
-            key={service.Name}
+            key={name}
             leftAvatar={serviceIcon}
-            primaryText={service.Name}
-            onClick={() => {this.props.onServiceClick(service.Name)}}
+            primaryText={name}
+            onClick={() => {this.props.onServiceClick(name)}}
             secondaryText='Something something description' />
         )}
       </List>
