@@ -42,7 +42,9 @@ const Explorer = React.createClass({
 
     let body
     if (this.props.children) {
-      body = <Service name={this.props.params.name} />
+      const serviceName = this.props.params.name
+      const serviceDetails = this.props.registry.services.get(serviceName)
+      body = <Service name={serviceName} service={serviceDetails} />
     } else {
       body = <ServicesList registry={this.props.registry}
         onServiceClick={this._onServiceClick}
@@ -50,7 +52,6 @@ const Explorer = React.createClass({
     }
 
     return <section style={styles.wrapper}>
-      <h1 style={styles.header}>Registry</h1>
       <Paper style={styles.paper} zDepth={1} rounded={false}>{body}</Paper>
     </section>
   }
