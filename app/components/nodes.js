@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableHeader, TableHeaderColumn, TableBody, TableRow, TableRowColumn } from 'material-ui'
+import { CardTitle, Table, TableHeader, TableHeaderColumn, TableBody, TableRow, TableRowColumn } from 'material-ui'
 
 export default React.createClass({
   displayName: 'Nodes',
@@ -16,7 +16,12 @@ export default React.createClass({
       metadata: { width: '10%' }
     }
 
+    const numNodes = this.props.nodes.length
+    const subtitle = `${numNodes} node${(numNodes > 1) ? 's' : ''}`
+
     return <div>
+      <CardTitle title={this.props.name} subtitle={subtitle} />
+
       <Table selectable={false}>
         <TableHeader adjustForCheckbox={false}>
           <TableRow>
