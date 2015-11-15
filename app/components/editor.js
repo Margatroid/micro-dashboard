@@ -1,9 +1,9 @@
 import React from 'react'
 
 export default React.createClass({
-  displayName: 'Query',
+  displayName: 'Editor',
 
   render: function() {
-    return <div>Query</div>
+    return <span>I'm an editor</span>
   }
 })
