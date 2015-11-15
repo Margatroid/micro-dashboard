@@ -1,5 +1,7 @@
 import React from 'react'
-import { Card, CardActions, CardHeader, CardTitle, FlatButton, FontIcon, Styles } from 'material-ui'
+import hljs from 'highlight.js'
+import { Card, CardActions, CardHeader, CardText, CardTitle, FontIcon, RaisedButton, Styles } from 'material-ui'
+
 const { Colors } = Styles
 
 export default React.createClass({
@@ -8,6 +10,12 @@ export default React.createClass({
   render: function() {
     const numEndpoints = this.props.endpoints.length
     const subtitle = `${numEndpoints} endpoint${(numEndpoints > 1) ? 's' : ''}`
+    const styles = {
+      endpoint: {
+        padding: 20,
+        newQuery: { textAlign: 'center' }
+      }
+    }
 
     const endpointIcon = <FontIcon style={{fontSize: 36}}
       className='material-icons'
@@ -17,7 +25,15 @@ export default React.createClass({
       <CardTitle subtitle={subtitle} />
 
       {this.props.endpoints.map((endpoint) => {
-        return <Card key={endpoint.Name} initiallyExpanded={false}>
+
+        const highlightBlock = (domNode) => {
+          if (!domNode) return
+          hljs.highlightBlock(domNode)
+        }
+
+        return <Card key={endpoint.Name}
+          initiallyExpanded={false}>
+
           <CardHeader title={endpoint.Name}
             subtitle={JSON.stringify(endpoint.Metadata)}
             actAsExpander={true}
@@ -25,9 +41,25 @@ export default React.createClass({
             showExpandableButton={true}>
           </CardHeader>
 
-          <CardActions expandable={true}>
-            <FlatButton label='New query'/>
-          </CardActions>
+          <div style={styles.endpoint} expandable={true}>
+            <CardActions style={styles.endpoint.newQuery}>
+              <RaisedButton primary={true} label='Create new query'/>
+            </CardActions>
+
+            <CardText>
+              <pre>
+                <code ref={highlightBlock} className='json'>
+                  {JSON.stringify(endpoint.Request, null, 4)}
+                </code>
+              </pre>
+
+              <pre>
+                <code ref={highlightBlock} className='json'>
+                  {JSON.stringify(endpoint.Response, null, 4)}
+                </code>
+              </pre>
+            </CardText>
+          </div>
         </Card>
       })}
     </div>

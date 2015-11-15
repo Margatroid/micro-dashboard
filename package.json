@@ -27,6 +27,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "highlight.js": "^8.9.1",
     "history": "^1.13.0",
     "isomorphic-fetch": "^2.2.0",
     "material-ui": "^0.13.1",
