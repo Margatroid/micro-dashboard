@@ -8,8 +8,15 @@ export default React.createClass({
   displayName: 'Endpoints',
 
   render: function() {
+    if (!this.props.endpoints) {
+      return <div style={{marginTop: 50}}>
+        <CardTitle subtitle='No endpoints found' />
+      </div>
+    }
+
     const numEndpoints = this.props.endpoints.length
     const subtitle = `${numEndpoints} endpoint${(numEndpoints > 1) ? 's' : ''}`
+
     const styles = {
       endpoint: {
         padding: 20,
