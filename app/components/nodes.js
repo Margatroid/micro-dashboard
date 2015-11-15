@@ -41,7 +41,7 @@ export default React.createClass({
               <TableRowColumn>{node.Id}</TableRowColumn>
               <TableRowColumn style={widths.address}>{node.Address}</TableRowColumn>
               <TableRowColumn style={widths.port}>{node.Port}</TableRowColumn>
-              <TableRowColumn style={widths.metadata}>{node.MetaData}</TableRowColumn>
+              <TableRowColumn style={widths.metadata}>{JSON.stringify(node.MetaData)}</TableRowColumn>
             </TableRow>
           })}
         </TableBody>
