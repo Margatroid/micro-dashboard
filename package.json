@@ -27,6 +27,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "brace": "^0.5.1",
     "highlight.js": "^8.9.1",
     "history": "^1.13.0",
     "isomorphic-fetch": "^2.2.0",
