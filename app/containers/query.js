@@ -14,7 +14,7 @@ export default React.createClass({
       editor: {
         marginRight: 20,
         flex: 1,
-        padding: 20
+        padding: 40
       },
       results: {
         marginLeft: 20,
