@@ -8,9 +8,12 @@ export default React.createClass({
   displayName: 'Brace',
 
   componentWillUnmount: function() {
+    this.editor.destroy()
   },
 
   _mountEditor(domNode) {
+    if (!domNode) return
+
     this.editor = ace.edit(domNode)
     this.editor.getSession().setMode('ace/mode/javascript')
   },
