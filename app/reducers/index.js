@@ -14,7 +14,7 @@ import { routerStateReducer } from 'redux-router'
  */
 
 function registryReducer(state = {
-  services: [],
+  services: new Map(),
   isFetching: false
 }, action) {
   switch (action.type) {
