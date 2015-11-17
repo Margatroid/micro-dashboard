@@ -27,7 +27,6 @@ module.exports = {
   devServer: {
     port: 9000,
     historyApiFallback: {
-      index: '/index.html',
       rewrites: [
         { from: /\/explorer/, to: '/index.html' }
       ]
