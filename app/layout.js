@@ -24,10 +24,14 @@ const Layout = React.createClass({
       color={Colors.grey50}>cloud</FontIcon>
 
     const appBarStyle = {position: 'absolute', top: 0, left: 0}
+    const initialSelectedIndex = this.props.location.pathname.includes('/query') ? 1 : 0
 
     return <div>
       <AppBar style={appBarStyle} zDepth={0} iconElementLeft={icon} title='Micro dashboard'>
-	<Tabs onChange={this._handleTabChange} style={{width: 400}}>
+        <Tabs initialSelectedIndex={initialSelectedIndex}
+          onChange={this._handleTabChange}
+          style={{width: 400}}>
+
           <Tab label='EXPLORER' route='/explorer' />
           <Tab label='QUERY TOOL' route='/query' />
 	</Tabs>
