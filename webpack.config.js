@@ -22,5 +22,10 @@ module.exports = {
 	loader: 'file?name=[name].[ext]'
       }
     ]
+  },
+
+  devServer: {
+    port: 9000,
+    historyApiFallback: true
   }
 }
