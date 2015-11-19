@@ -10,18 +10,15 @@ export default React.createClass({
   render: function() {
     const styles = {
       editor: {
-        height: this.props.height - 500,
+        height: this.props.height - 350,
         marginTop: 50
       },
-      title: {
-        float: 'left',
-        padding: 0
+      nameField: {
+        marginRight: 50
       }
     }
 
     return <div>
-      <CardTitle style={styles.title} title='Editor'/>
-
       <FloatingActionButton style={{float: 'right'}}>
         <FontIcon style={{fontSize: 55}}
           color={Colors.pink50}
@@ -29,11 +26,10 @@ export default React.createClass({
       </FloatingActionButton>
 
       <TextField hintText='Service name'
-        fullWidth={true}
+        style={styles.nameField}
         floatingLabelText='Service name' />
 
       <TextField hintText='Method'
-        fullWidth={true}
         floatingLabelText='Method' />
 
       <div style={styles.editor}>
