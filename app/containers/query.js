@@ -5,11 +5,24 @@ import Editor from '../components/editor'
 export default React.createClass({
   displayName: 'Query',
 
+  getInitialState: function() {
+    return this._getState()
+  },
+
+  _getState: function() {
+    return { editorHeight: window.innerHeight }
+  },
+
+  _handleResize: function() {
+    this.setState(this._getState())
+  },
+
   _getStyles: function() {
     return {
       wrapper: {
-        margin: '100px 40px',
-        display: 'flex'
+        margin: '100px 40px 0 40px',
+        display: 'flex',
+        height: this.state.editorHeight - 150
       },
       editor: {
         marginRight: 20,
@@ -22,6 +35,14 @@ export default React.createClass({
         padding: 20
       }
     }
+  },
+
+  componentDidMount: function() {
+    window.addEventListener('resize', this._handleResize)
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this._handleResize);
   },
 
   render: function() {
