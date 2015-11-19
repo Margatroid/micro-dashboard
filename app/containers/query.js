@@ -42,7 +42,7 @@ export default React.createClass({
   },
 
   componentWillUnmount: function() {
-    window.removeEventListener('resize', this._handleResize);
+    window.removeEventListener('resize', this._handleResize)
   },
 
   render: function() {
@@ -50,11 +50,10 @@ export default React.createClass({
 
     return <section style={styles.wrapper}>
       <Paper style={styles.editor} zDepth={1} rounded={false}>
-        <Editor />
+        <Editor height={this.state.editorHeight} />
       </Paper>
 
-      <Paper style={styles.results} zDepth={1} rounded={false}>
-      </Paper>
+      <Paper style={styles.results} zDepth={1} rounded={false} />
     </section>
   }
 })

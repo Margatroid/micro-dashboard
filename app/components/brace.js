@@ -19,7 +19,7 @@ export default React.createClass({
   },
 
   render: function() {
-    return <div style={{width: '100%', height: 400}} ref={this._mountEditor}>
-    </div>
+    return <div style={{width: '100%', height: '100%'}}
+      ref={this._mountEditor} />
   }
 })

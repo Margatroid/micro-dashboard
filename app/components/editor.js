@@ -8,8 +8,19 @@ export default React.createClass({
   displayName: 'Editor',
 
   render: function() {
+    const styles = {
+      editor: {
+        height: this.props.height - 500,
+        marginTop: 50
+      },
+      title: {
+        float: 'left',
+        padding: 0
+      }
+    }
+
     return <div>
-      <CardTitle style={{float: 'left', padding: 0}} title='Editor'/>
+      <CardTitle style={styles.title} title='Editor'/>
 
       <FloatingActionButton style={{float: 'right'}}>
         <FontIcon style={{fontSize: 55}}
@@ -25,7 +36,9 @@ export default React.createClass({
         fullWidth={true}
         floatingLabelText='Method' />
 
-      <Brace />
+      <div style={styles.editor}>
+        <Brace />
+      </div>
     </div>
   }
 })
