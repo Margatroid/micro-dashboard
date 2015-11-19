@@ -16,6 +16,7 @@ export default React.createClass({
 
     this.editor = ace.edit(domNode)
     this.editor.getSession().setMode('ace/mode/javascript')
+    this.editor.setShowPrintMargin(false)
   },
 
   render: function() {
