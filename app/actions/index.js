@@ -15,6 +15,21 @@ export function receiveRegistry(registry) {
   }
 }
 
+export const REQUEST_QUERY = 'REQUEST_QUERY'
+export function requestQuery() {
+  return {
+    type: REQUEST_QUERY
+  }
+}
+
+export const RECEIVE_QUERY = 'RECEIVE_QUERY'
+export function receiveQuery(response) {
+  return {
+    type: RECEIVE_QUERY,
+    response: response
+  }
+}
+
 export function fetchRegistry() {
   return function (dispatch) {
     dispatch(requestRegistry)
@@ -29,6 +44,30 @@ export function fetchRegistry() {
         })
 
         dispatch(receiveRegistry(registry))
+      })
+  }
+}
+
+export function fetchQueryResponse(service, method, request) {
+  return function(dispatch) {
+    dispatch(requestQuery)
+
+    const data = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        service: service,
+        method: method,
+        request: request
+      })
+    }
+
+    return fetch('//localhost:8080/dashboard/rpc/call', data)
+      .then(function(response) {
+        console.log('Got RPC response', response)
       })
   }
 }

@@ -1,8 +1,10 @@
 import React from 'react'
 import { Paper } from 'material-ui'
 import Editor from '../components/editor'
+import { fetchQueryResponse } from '../actions'
+import { connect } from 'react-redux'
 
-export default React.createClass({
+const Query = React.createClass({
   displayName: 'Query',
 
   getInitialState: function() {
@@ -15,6 +17,10 @@ export default React.createClass({
 
   _handleResize: function() {
     this.setState(this._getState())
+  },
+
+  _submitQuery: function(service, method, request) {
+    this.props.dispatch(fetchQueryResponse(service, method, request))
   },
 
   _getStyles: function() {
@@ -50,10 +56,15 @@ export default React.createClass({
 
     return <section style={styles.wrapper}>
       <Paper style={styles.editor} zDepth={1} rounded={false}>
-        <Editor height={this.state.editorHeight} />
+        <Editor submit={this._submitQuery} height={this.state.editorHeight} />
       </Paper>
 
       <Paper style={styles.results} zDepth={1} rounded={false} />
     </section>
   }
 })
+
+function select(state) {
+  return { query: state.query }
+}
+export default connect(select)(Query)
