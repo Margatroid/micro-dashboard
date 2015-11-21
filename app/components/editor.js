@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardTitle, FloatingActionButton, FontIcon, Styles, TextField } from 'material-ui'
+import { FloatingActionButton, FontIcon, Styles, TextField } from 'material-ui'
 import Brace from './brace'
 
 const { Colors } = Styles
