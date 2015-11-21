@@ -65,7 +65,7 @@ export function fetchQueryResponse(service, method, request) {
       })
     }
 
-    return fetch('//localhost:8080/dashboard/rpc/call', data)
+    return fetch('//localhost:8080/dashboard/registry/rpc', data)
       .then(function(response) {
         console.log('Got RPC response', response)
       })
