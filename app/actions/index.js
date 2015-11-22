@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+const request = require('superagent')
 
 export const REQUEST_REGISTRY = 'REQUEST_REGISTRY'
 export function requestRegistry() {
@@ -34,11 +34,10 @@ export function fetchRegistry() {
   return function (dispatch) {
     dispatch(requestRegistry)
 
-    return fetch('//localhost:8080/dashboard/registry/all')
-      .then(response => response.json())
-      .then(json => {
+    request.get('//localhost:8080/dashboard/registry/all')
+      .end((error, response) => {
         let services = new Map()
-        json.forEach((service) => {
+        response.body.forEach((service) => {
           let versions = new Map()
           service.forEach((serviceVersion) => {
             versions.set(serviceVersion.Version || 'unknown', serviceVersion)
@@ -51,26 +50,17 @@ export function fetchRegistry() {
   }
 }
 
-export function fetchQueryResponse(service, method, request) {
+export function fetchQueryResponse(service, method, requestData) {
   return function(dispatch) {
     dispatch(requestQuery)
 
-    const data = {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        service: service,
-        method: method,
-        request: request
-      })
-    }
-
-    return fetch('//localhost:8080/dashboard/registry/rpc', data)
-      .then(function(response) {
-        console.log('Got RPC response', response)
+    request.post('//localhost:8081/rpc')
+      .type('form')
+      .send({ service: service })
+      .send({ method: method })
+      .send({ requestData: requestData })
+      .end((error, response) => {
+        dispatch(receiveQuery(response))
       })
   }
 }
