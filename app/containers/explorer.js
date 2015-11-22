@@ -12,12 +12,12 @@ const Typography = Styles.Typography
 const Explorer = React.createClass({
   displayName: 'Explorer',
 
-  _loadServiceNames: function() {
-    this.props.dispatch(fetchRegistry())
-  },
-
   _onServiceClick: function(name, version) {
     this.props.dispatch(pushState(null, `/explorer/${name}/${version}`))
+  },
+
+  componentDidMount: function() {
+    this.props.dispatch(fetchRegistry())
   },
 
   render: function() {
@@ -53,8 +53,7 @@ const Explorer = React.createClass({
       body = <Service name={serviceName} service={serviceDetails} />
     } else {
       body = <ServicesList registry={this.props.registry}
-        onServiceClick={this._onServiceClick}
-        onComponentDidMount={this._loadServiceNames} />
+        onServiceClick={this._onServiceClick} />
     }
 
     return <section style={styles.wrapper}>

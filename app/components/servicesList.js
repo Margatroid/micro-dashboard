@@ -7,12 +7,7 @@ export default React.createClass({
 
   propTypes: {
     registry: React.PropTypes.object.isRequired,
-    onComponentDidMount: React.PropTypes.func.isRequired,
     onServiceClick: React.PropTypes.func.isRequired
-  },
-
-  componentDidMount: function() {
-    this.props.onComponentDidMount()
   },
 
   render: function() {
