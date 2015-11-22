@@ -7,7 +7,7 @@ export default React.createClass({
 
   render: function() {
     if (!this.props.service) {
-      return <p>Fix me: Load the service <strong>{this.props.name}</strong></p>
+      return <p>Loading...</p>
     }
 
     return <div>
