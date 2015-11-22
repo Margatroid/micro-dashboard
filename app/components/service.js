@@ -11,7 +11,10 @@ export default React.createClass({
     }
 
     return <div>
-      <Nodes name={this.props.name} nodes={this.props.service.Nodes} />
+      <Nodes name={this.props.name}
+        version={this.props.service.Version}
+        nodes={this.props.service.Nodes} />
+
       <Endpoints endpoints={this.props.service.Endpoints} />
     </div>
   }

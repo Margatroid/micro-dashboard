@@ -23,20 +23,22 @@ export default React.createClass({
     </FontIcon>
 
     let services = []
-    for (let name of this.props.registry.services.keys()) {
-      services.push(name)
-    }
+    this.props.registry.services.forEach((versions, serviceName) => {
+      versions.forEach((service, version) => {
+        services.push(
+          <ListItem
+            key={`${serviceName}${version}`}
+            leftAvatar={serviceIcon}
+            primaryText={serviceName}
+            onClick={() => {this.props.onServiceClick(serviceName, version)}}
+            secondaryText={`Version: ${version}`} />
+        )
+      })
+    })
 
     return <div>
       <List subheader='Services'>
-        {services.map((name) =>
-          <ListItem
-            key={name}
-            leftAvatar={serviceIcon}
-            primaryText={name}
-            onClick={() => {this.props.onServiceClick(name)}}
-            secondaryText='Something something description' />
-        )}
+        {services}
       </List>
     </div>
   }

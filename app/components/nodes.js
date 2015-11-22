@@ -17,7 +17,8 @@ export default React.createClass({
     }
 
     const numNodes = this.props.nodes.length
-    const subtitle = `${numNodes} node${(numNodes > 1) ? 's' : ''}`
+    const subtitle =
+      `Version ${this.props.version} - ${numNodes} node${(numNodes > 1) ? 's' : ''}`
 
     return <div>
       <CardTitle title={this.props.name} subtitle={subtitle} />

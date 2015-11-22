@@ -37,13 +37,16 @@ export function fetchRegistry() {
     return fetch('//localhost:8080/dashboard/registry/all')
       .then(response => response.json())
       .then(json => {
-        // Restructure the data a little
-        let registry = new Map()
+        let services = new Map()
         json.forEach((service) => {
-          registry.set(service.Name, service)
+          let versions = new Map()
+          service.forEach((serviceVersion) => {
+            versions.set(serviceVersion.Version || 'unknown', serviceVersion)
+          })
+          services.set(service[0].Name, versions)
         })
 
-        dispatch(receiveRegistry(registry))
+        dispatch(receiveRegistry(services))
       })
   }
 }

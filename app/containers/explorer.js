@@ -16,8 +16,8 @@ const Explorer = React.createClass({
     this.props.dispatch(fetchRegistry())
   },
 
-  _onServiceClick: function(name) {
-    this.props.dispatch(pushState(null, `/explorer/${name}`))
+  _onServiceClick: function(name, version) {
+    this.props.dispatch(pushState(null, `/explorer/${name}/${version}`))
   },
 
   render: function() {
@@ -47,7 +47,7 @@ const Explorer = React.createClass({
 
       let serviceDetails
       if (services.has(serviceName)) {
-        serviceDetails = services.get(serviceName)
+        serviceDetails = services.get(serviceName).get(this.props.params.version)
       }
 
       body = <Service name={serviceName} service={serviceDetails} />
