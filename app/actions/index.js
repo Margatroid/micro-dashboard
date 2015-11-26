@@ -1,3 +1,4 @@
+/* global require */
 const request = require('superagent')
 
 export const REQUEST_REGISTRY = 'REQUEST_REGISTRY'
