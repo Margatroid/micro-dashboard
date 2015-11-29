@@ -1,5 +1,5 @@
 import React from 'react'
-import { FloatingActionButton, FontIcon, Styles, TextField } from 'material-ui'
+import { FloatingActionButton, FontIcon, Styles, SelectField, TextField } from 'material-ui'
 import Brace from './brace'
 
 const { Colors } = Styles
@@ -8,6 +8,10 @@ export default React.createClass({
   displayName: 'Editor',
 
   propTypes: {
+    submit: React.PropTypes.func.isRequired,
+    height: React.PropTypes.number.isRequired,
+    registry: React.PropTypes.object.isRequired,
+    query: React.PropTypes.object.isRequired,
     submit: React.PropTypes.func.isRequired
   },
 
@@ -20,7 +24,7 @@ export default React.createClass({
   },
 
   _handleServiceChange: function(event) {
-    this.setState({ service: event.target.value })
+    this.props.onQueryServiceChange(event.target.value)
   },
 
   _handleMethodChange: function(event) {
@@ -42,6 +46,13 @@ export default React.createClass({
       }
     }
 
+    let serviceMenuItems = []
+    if (this.props.registry.services.size) {
+      for (let serviceName of this.props.registry.services.keys()) {
+        serviceMenuItems.push({ payload: serviceName, text: serviceName })
+      }
+    }
+
     return <div>
       <FloatingActionButton onClick={this._onSubmit} style={{float: 'right'}}>
         <FontIcon style={{fontSize: 55}}
@@ -49,11 +60,12 @@ export default React.createClass({
           className='material-icons'>play_arrow</FontIcon>
       </FloatingActionButton>
 
-      <TextField hintText='Service name'
+      <SelectField
+        value={this.props.query.service}
+        floatingLabelText='Service name'
+        hintText='Loading services...'
         onChange={this._handleServiceChange}
-        value={this.state.service}
-        style={styles.nameField}
-        floatingLabelText='Service name' />
+        menuItems={serviceMenuItems} />
 
       <TextField hintText='Method'
         onChange={this._handleMethodChange}

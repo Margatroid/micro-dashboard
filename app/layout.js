@@ -2,16 +2,19 @@ import React from 'react'
 import { AppBar, FontIcon, Styles, Tabs, Tab } from 'material-ui'
 import { pushState } from 'redux-router'
 import { connect } from 'react-redux'
-import { fetchRegistry } from './actions'
+import { fetchRegistry, setQueryService } from './actions'
 
 const { Colors } = Styles
 
 const Layout = React.createClass({
   displayName: 'Layout',
 
+  _handleQueryServiceChange: function(service) {
+    this.props.dispatch(setQueryService(service))
+  },
+
   _handleTabChange: function(value, e, tab) {
-    const { dispatch } = this.props
-    dispatch(pushState(null, tab.props.route))
+    this.props.dispatch(pushState(null, tab.props.route))
   },
 
   _navigateToService(name, version) {
@@ -39,7 +42,9 @@ const Layout = React.createClass({
     const children = React.Children.map(this.props.children, (child) => {
       let additionalProps = {
         registry: this.props.registry,
-        navigateToService: this._navigateToService
+        query: this.props.query,
+        navigateToService: this._navigateToService,
+        onQueryServiceChange: this._handleQueryServiceChange
       }
 
       return React.cloneElement(child, additionalProps)
@@ -64,6 +69,6 @@ const Layout = React.createClass({
 })
 
 function select(state) {
-  return { registry: state.registry }
+  return { query: state.query, registry: state.registry }
 }
 export default connect(select)(Layout)

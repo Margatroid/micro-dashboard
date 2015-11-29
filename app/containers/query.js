@@ -56,7 +56,11 @@ export default React.createClass({
 
     return <section style={styles.wrapper}>
       <Paper style={styles.editor} zDepth={1} rounded={false}>
-        <Editor submit={this._submitQuery} height={this.state.editorHeight} />
+        <Editor submit={this._submitQuery}
+          registry={this.props.registry}
+          query={this.props.query}
+          onQueryServiceChange={this.props.onQueryServiceChange}
+          height={this.state.editorHeight} />
       </Paper>
 
       <Paper style={styles.results} zDepth={1} rounded={false} />

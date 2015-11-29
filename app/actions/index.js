@@ -1,6 +1,14 @@
 /* global require */
 const request = require('superagent')
 
+export const SET_QUERY_SERVICE = 'SET_QUERY_SERVICE'
+export function setQueryService(service) {
+  return {
+    type: SET_QUERY_SERVICE,
+    service: service
+  }
+}
+
 export const REQUEST_REGISTRY = 'REQUEST_REGISTRY'
 export function requestRegistry() {
   return {

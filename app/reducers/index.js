@@ -1,4 +1,4 @@
-import { REQUEST_REGISTRY, RECEIVE_REGISTRY, REQUEST_QUERY, RECEIVE_QUERY } from '../actions'
+import { REQUEST_REGISTRY, RECEIVE_REGISTRY, REQUEST_QUERY, RECEIVE_QUERY, SET_QUERY_SERVICE } from '../actions'
 import { combineReducers } from 'redux'
 import { routerStateReducer } from 'redux-router'
 
@@ -13,6 +13,8 @@ import { routerStateReducer } from 'redux-router'
  *    query: {
  *      isFetching: false,
  *      response: {},
+ *      service: 'foo',
+ *      method: 'bar'
  *    }
  *  }
  */
@@ -45,6 +47,10 @@ function queryReducer(state = {
 }, action) {
 
   switch (action.type) {
+    case SET_QUERY_SERVICE:
+      return Object.assign({}, state, {
+        service: action.service
+      })
     case REQUEST_QUERY:
       return Object.assign({}, state, {
         isFetching: true
