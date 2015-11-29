@@ -1,5 +1,5 @@
 import React from 'react'
-import { FloatingActionButton, FontIcon, Styles, SelectField, TextField } from 'material-ui'
+import { FloatingActionButton, FontIcon, Styles, SelectField } from 'material-ui'
 import Brace from './brace'
 
 const { Colors } = Styles
@@ -35,9 +35,11 @@ export default React.createClass({
   },
 
   render: function() {
+    const { height, registry, query } = this.props
+
     const styles = {
       editor: {
-        height: this.props.height - 350,
+        height: height - 350,
         marginTop: 50
       },
       nameField: {
@@ -46,9 +48,19 @@ export default React.createClass({
     }
 
     let serviceMenuItems = []
-    if (this.props.registry.services.size) {
-      for (let serviceName of this.props.registry.services.keys()) {
+    let methodMenuItems = []
+    if (registry.services.size) {
+      for (let serviceName of registry.services.keys()) {
         serviceMenuItems.push({ payload: serviceName, text: serviceName })
+      }
+
+      if (query.service) {
+        const selectedService = registry.services.get(query.service).values().next().value
+        if (selectedService.Endpoints) {
+          methodMenuItems = selectedService.Endpoints.map((endpoint) => {
+            return { payload: endpoint.Name, text: endpoint.Name }
+          })
+        }
       }
     }
 
@@ -60,16 +72,17 @@ export default React.createClass({
       </FloatingActionButton>
 
       <SelectField
-        value={this.props.query.service}
-        floatingLabelText='Service name'
-        hintText='Loading services...'
+        value={query.service}
+        floatingLabelText='Service'
         onChange={this._handleServiceChange}
         menuItems={serviceMenuItems} />
 
-      <TextField hintText='Method'
+      <SelectField
+        value={query.method}
+        floatingLabelText='Method'
         onChange={this._handleMethodChange}
-        value={this.state.method}
-        floatingLabelText='Method' />
+        disabled={!methodMenuItems.length}
+        menuItems={methodMenuItems} />
 
       <div style={styles.editor}>
         <Brace />
