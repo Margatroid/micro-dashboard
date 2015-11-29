@@ -39,7 +39,10 @@ export default React.createClass({
         serviceDetails = services.get(serviceName).get(this.props.params.version)
       }
 
-      body = <Service name={serviceName} service={serviceDetails} />
+      body = <Service name={serviceName}
+        changeToQueryPage={this.props.changeToQueryPage}
+        onQueryServiceChange={this.props.onQueryServiceChange}
+        service={serviceDetails} />
     } else {
       body = <ServicesList registry={this.props.registry}
         onServiceClick={this.props.navigateToService} />

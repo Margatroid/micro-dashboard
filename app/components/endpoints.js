@@ -7,6 +7,18 @@ const { Colors } = Styles
 export default React.createClass({
   displayName: 'Endpoints',
 
+  propTypes: {
+    endpoints: React.PropTypes.array.isRequired,
+    service: React.PropTypes.string.isRequired,
+    changeToQueryPage: React.PropTypes.func.isRequired,
+    onQueryServiceChange: React.PropTypes.func.isRequired
+  },
+
+  _onNewQueryClick: function(endpoint) {
+    this.props.onQueryServiceChange(this.props.service, endpoint.Name)
+    this.props.changeToQueryPage()
+  },
+
   render: function() {
     if (!this.props.endpoints) {
       return <div style={{marginTop: 50}}>
@@ -50,7 +62,10 @@ export default React.createClass({
 
           <div style={styles.endpoint} expandable={true}>
             <CardActions style={styles.endpoint.newQuery}>
-              <RaisedButton primary={true} label='Create new query'/>
+              <RaisedButton onClick={() => {
+                this._onNewQueryClick(endpoint) }}
+                primary={true}
+                label='Create new query'/>
             </CardActions>
 
             <CardText>

@@ -5,6 +5,10 @@ import Endpoints from './endpoints'
 export default React.createClass({
   displayName: 'Service',
 
+  propTypes: {
+    service: React.PropTypes.object
+  },
+
   render: function() {
     if (!this.props.service) {
       return <p>Loading...</p>
@@ -15,7 +19,10 @@ export default React.createClass({
         version={this.props.service.Version}
         nodes={this.props.service.Nodes} />
 
-      <Endpoints endpoints={this.props.service.Endpoints} />
+      <Endpoints service={this.props.name}
+        changeToQueryPage={this.props.changeToQueryPage}
+        onQueryServiceChange={this.props.onQueryServiceChange}
+        endpoints={this.props.service.Endpoints} />
     </div>
   }
 })

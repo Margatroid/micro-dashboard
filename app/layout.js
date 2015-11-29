@@ -21,6 +21,10 @@ const Layout = React.createClass({
     this.props.dispatch(pushState(null, tab.props.route))
   },
 
+  _changeToQueryPage: function() {
+    this.props.dispatch(pushState(null, '/query'))
+  },
+
   _navigateToService(name, version) {
     this.props.dispatch(pushState(null, `/explorer/${name}/${version}`))
   },
@@ -49,20 +53,24 @@ const Layout = React.createClass({
         query: this.props.query,
         navigateToService: this._navigateToService,
         onQueryServiceChange: this._handleQueryServiceChange,
-        onQueryMethodChange: this._handleQueryMethodChange
+        onQueryMethodChange: this._handleQueryMethodChange,
+        changeToQueryPage: this._changeToQueryPage
       }
 
       return React.cloneElement(child, additionalProps)
     })
 
+    const tabsValue = (this.props.router.location.pathname == '/query') ? '/query' : '/explorer'
+
     return <div>
       <AppBar style={appBarStyle} zDepth={0} iconElementLeft={icon} title='Micro dashboard'>
         <Tabs initialSelectedIndex={initialSelectedIndex}
           onChange={this._handleTabChange}
+          value={tabsValue}
           style={{width: 400}}>
 
-          <Tab label='EXPLORER' route='/explorer' />
-          <Tab label='QUERY TOOL' route='/query' />
+          <Tab label='EXPLORER' value='/explorer' route='/explorer' />
+          <Tab label='QUERY TOOL' value='/query' route='/query' />
 	</Tabs>
       </AppBar>
 
@@ -74,6 +82,6 @@ const Layout = React.createClass({
 })
 
 function select(state) {
-  return { query: state.query, registry: state.registry }
+  return { router: state.router, query: state.query, registry: state.registry }
 }
 export default connect(select)(Layout)
