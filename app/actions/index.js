@@ -2,10 +2,11 @@
 const request = require('superagent')
 
 export const SET_QUERY_SERVICE = 'SET_QUERY_SERVICE'
-export function setQueryService(service) {
+export function setQueryService(service, method) {
   return {
     type: SET_QUERY_SERVICE,
-    service: service
+    service: service,
+    method: method
   }
 }
 

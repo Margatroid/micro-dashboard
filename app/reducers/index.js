@@ -56,7 +56,8 @@ function queryReducer(state = {
   switch (action.type) {
     case SET_QUERY_SERVICE:
       return Object.assign({}, state, {
-        service: action.service
+        service: action.service,
+        method: action.method
       })
     case SET_QUERY_METHOD:
       return Object.assign({}, state, {

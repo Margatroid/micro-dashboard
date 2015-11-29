@@ -25,7 +25,13 @@ export default React.createClass({
   },
 
   _handleServiceChange: function(event) {
-    this.props.onQueryServiceChange(event.target.value)
+    // @TODO: Move this new endpoint logic to the reducer.
+    const service = this.props.registry.services.get(event.target.value).values().next().value
+
+    let newEndpoint = ''
+    if (service.Endpoints) newEndpoint = service.Endpoints[0].Name
+
+    this.props.onQueryServiceChange(event.target.value, newEndpoint)
   },
 
   _handleMethodChange: function(event) {
