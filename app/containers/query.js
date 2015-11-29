@@ -4,7 +4,7 @@ import Editor from '../components/editor'
 import { fetchQueryResponse } from '../actions'
 import { connect } from 'react-redux'
 
-const Query = React.createClass({
+export default React.createClass({
   displayName: 'Query',
 
   getInitialState: function() {
@@ -63,8 +63,3 @@ const Query = React.createClass({
     </section>
   }
 })
-
-function select(state) {
-  return { query: state.query }
-}
-export default connect(select)(Query)
