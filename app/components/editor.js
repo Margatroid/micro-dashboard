@@ -77,6 +77,7 @@ export default React.createClass({
         value={query.service}
         floatingLabelText='Service'
         onChange={this._handleServiceChange}
+        style={styles.nameField}
         menuItems={serviceMenuItems} />
 
       <SelectField
