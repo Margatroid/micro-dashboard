@@ -59,6 +59,7 @@ export default React.createClass({
           registry={this.props.registry}
           query={this.props.query}
           onQueryServiceChange={this.props.onQueryServiceChange}
+          onQueryMethodChange={this.props.onQueryMethodChange}
           height={this.state.editorHeight} />
       </Paper>
 

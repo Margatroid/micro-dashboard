@@ -11,7 +11,9 @@ export default React.createClass({
     submit: React.PropTypes.func.isRequired,
     height: React.PropTypes.number.isRequired,
     registry: React.PropTypes.object.isRequired,
-    query: React.PropTypes.object.isRequired
+    query: React.PropTypes.object.isRequired,
+    onQueryServiceChange: React.PropTypes.func.isRequired,
+    onQueryMethodChange: React.PropTypes.func.isRequired
   },
 
   getInitialState: function() {
@@ -27,7 +29,7 @@ export default React.createClass({
   },
 
   _handleMethodChange: function(event) {
-    this.setState({ method: event.target.value })
+    this.props.onQueryMethodChange(event.target.value)
   },
 
   _onSubmit: function() {

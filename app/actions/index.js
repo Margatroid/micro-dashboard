@@ -9,6 +9,14 @@ export function setQueryService(service) {
   }
 }
 
+export const SET_QUERY_METHOD = 'SET_QUERY_METHOD'
+export function setQueryMethod(method) {
+  return {
+    type: SET_QUERY_METHOD,
+    method: method
+  }
+}
+
 export const REQUEST_REGISTRY = 'REQUEST_REGISTRY'
 export function requestRegistry() {
   return {
