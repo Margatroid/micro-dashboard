@@ -1,7 +1,6 @@
 import React from 'react'
 import { Paper, Styles } from 'material-ui'
 import { connect } from 'react-redux'
-import { fetchRegistry } from '../actions'
 import { pushState } from 'redux-router'
 
 import Service from '../components/service'
@@ -9,16 +8,8 @@ import ServicesList from '../components/servicesList'
 
 const Typography = Styles.Typography
 
-const Explorer = React.createClass({
+export default React.createClass({
   displayName: 'Explorer',
-
-  _onServiceClick: function(name, version) {
-    this.props.dispatch(pushState(null, `/explorer/${name}/${version}`))
-  },
-
-  componentDidMount: function() {
-    this.props.dispatch(fetchRegistry())
-  },
 
   render: function() {
     const styles = {
@@ -53,7 +44,7 @@ const Explorer = React.createClass({
       body = <Service name={serviceName} service={serviceDetails} />
     } else {
       body = <ServicesList registry={this.props.registry}
-        onServiceClick={this._onServiceClick} />
+        onServiceClick={this.props.navigateToService} />
     }
 
     return <section style={styles.wrapper}>
@@ -61,8 +52,3 @@ const Explorer = React.createClass({
     </section>
   }
 })
-
-function select(state) {
-  return { registry: state.registry }
-}
-export default connect(select)(Explorer)
