@@ -11,8 +11,7 @@ export default React.createClass({
     submit: React.PropTypes.func.isRequired,
     height: React.PropTypes.number.isRequired,
     registry: React.PropTypes.object.isRequired,
-    query: React.PropTypes.object.isRequired,
-    submit: React.PropTypes.func.isRequired
+    query: React.PropTypes.object.isRequired
   },
 
   getInitialState: function() {

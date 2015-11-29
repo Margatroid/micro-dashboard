@@ -2,7 +2,6 @@ import React from 'react'
 import { Paper } from 'material-ui'
 import Editor from '../components/editor'
 import { fetchQueryResponse } from '../actions'
-import { connect } from 'react-redux'
 
 export default React.createClass({
   displayName: 'Query',
