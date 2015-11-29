@@ -1,7 +1,5 @@
 import React from 'react'
 import { Paper, Styles } from 'material-ui'
-import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
 
 import Service from '../components/service'
 import ServicesList from '../components/servicesList'
