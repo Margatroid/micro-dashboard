@@ -17,8 +17,8 @@ const Layout = React.createClass({
     this.props.dispatch(setQueryMethod(method))
   },
 
-  _handleTabChange: function(value, e, tab) {
-    this.props.dispatch(pushState(null, tab.props.route))
+  _changeToExplorerPage: function() {
+    this.props.dispatch(pushState(null, '/explorer'))
   },
 
   _changeToQueryPage: function() {
@@ -65,12 +65,11 @@ const Layout = React.createClass({
     return <div>
       <AppBar style={appBarStyle} zDepth={0} iconElementLeft={icon} title='Micro dashboard'>
         <Tabs initialSelectedIndex={initialSelectedIndex}
-          onChange={this._handleTabChange}
           value={tabsValue}
           style={{width: 400}}>
 
-          <Tab label='EXPLORER' value='/explorer' route='/explorer' />
-          <Tab label='QUERY TOOL' value='/query' route='/query' />
+          <Tab onClick={this._changeToExplorerPage} label='EXPLORER' value='/explorer' route='/explorer' />
+          <Tab onClick={this._changeToQueryPage} label='QUERY TOOL' value='/query' route='/query' />
 	</Tabs>
       </AppBar>
 
