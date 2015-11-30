@@ -81,6 +81,20 @@ const Layout = React.createClass({
 })
 
 function select(state) {
-  return { router: state.router, query: state.query, registry: state.registry }
+  const { app } = state
+
+  const query = {
+    isFetching: app.isFetchingQuery,
+    response: app.queryResponse,
+    service: app.queryService,
+    method: app.queryMethod
+  }
+
+  const registry = {
+    services: app.registry,
+    isFetching: app.isFetchingRegistry
+  }
+
+  return { router: state.router, query: query, registry: registry }
 }
 export default connect(select)(Layout)

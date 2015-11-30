@@ -9,68 +9,48 @@ import {
 import { combineReducers } from 'redux'
 import { routerStateReducer } from 'redux-router'
 
-/*  State map:
- *
- *  {
- *    router: {},
- *    registry: {
- *      services: [],
- *      isFetching: false
- *    },
- *    query: {
- *      isFetching: false,
- *      response: {},
- *      service: 'foo',
- *      method: 'bar'
- *    }
- *  }
- */
-
-function registryReducer(state = {
-  services: new Map(),
-  isFetching: false
+function appReducer(state = {
+  registry: new Map(),
+  isFetchingRegistry: false,
+  isFetchingQuery: false,
+  queryResponse: {},
+  queryService: '',
+  queryMethod: ''
 }, action) {
 
   switch (action.type) {
     case REQUEST_REGISTRY:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetchingRegistry: true
       })
     case RECEIVE_REGISTRY:
       return Object.assign({}, state, {
-        isFetching: false,
-        services: action.registry
+        isFetchingRegistry: false,
+        registry: action.registry
       })
-    default:
-      return state
-  }
-}
-
-function queryReducer(state = {
-  service: '',
-  method: '',
-  request: {},
-  result: {}
-}, action) {
-
-  switch (action.type) {
     case SET_QUERY_SERVICE:
+      // Find the first endpoint this service's first version provides.
+      const service = state.registry.get(action.service).values().next().value
+
+      let endpoint = ''
+      if (service.Endpoints) endpoint = service.Endpoints[0].Name
+
       return Object.assign({}, state, {
-        service: action.service,
-        method: action.method
+        queryService: action.service,
+        queryMethod: endpoint
       })
     case SET_QUERY_METHOD:
       return Object.assign({}, state, {
-        method: action.method
+        queryMethod: action.method
       })
     case REQUEST_QUERY:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetchingQuery: true
       })
     case RECEIVE_QUERY:
       return Object.assign({}, state, {
-        isFetching: false,
-        response: action.response
+        isFetchingQuery: false,
+        queryResponse: action.response
       })
     default:
       return state
@@ -78,9 +58,8 @@ function queryReducer(state = {
 }
 
 const rootReducer = combineReducers({
-  registry: registryReducer,
-  router: routerStateReducer,
-  query: queryReducer
+  app: appReducer,
+  router: routerStateReducer
 })
 
 export default rootReducer
