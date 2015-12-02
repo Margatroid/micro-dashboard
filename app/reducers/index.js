@@ -8,6 +8,7 @@ import {
 } from '../actions'
 import { combineReducers } from 'redux'
 import { routerStateReducer } from 'redux-router'
+import { getRequestBody } from './helpers'
 
 function appReducer(state = {
   registry: new Map(),
@@ -15,7 +16,8 @@ function appReducer(state = {
   isFetchingQuery: false,
   queryResponse: {},
   queryService: '',
-  queryMethod: ''
+  queryMethod: '',
+  queryBody: ''
 }, action) {
 
   switch (action.type) {
@@ -37,11 +39,16 @@ function appReducer(state = {
 
       return Object.assign({}, state, {
         queryService: action.service,
-        queryMethod: endpoint
+        queryMethod: endpoint,
+        queryBody: getRequestBody(service, endpoint)
       })
     case SET_QUERY_METHOD:
       return Object.assign({}, state, {
-        queryMethod: action.method
+        queryMethod: action.method,
+        queryBody: getRequestBody(
+          state.registry.get(state.queryService).values().next().value,
+          action.method
+        )
       })
     case REQUEST_QUERY:
       return Object.assign({}, state, {

@@ -80,7 +80,7 @@ export default React.createClass({
         menuItems={methodMenuItems} />
 
       <div style={styles.editor}>
-        <Brace />
+        <Brace content={this.props.query.body} />
       </div>
     </div>
   }

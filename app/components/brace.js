@@ -11,12 +11,17 @@ export default React.createClass({
     this.editor.destroy()
   },
 
+  componentDidUpdate: function() {
+    this.editor.setValue(this.props.content)
+  },
+
   _mountEditor(domNode) {
     if (!domNode) return
 
     this.editor = ace.edit(domNode)
     this.editor.getSession().setMode('ace/mode/javascript')
     this.editor.setShowPrintMargin(false)
+    this.editor.setValue(this.props.content)
   },
 
   render: function() {

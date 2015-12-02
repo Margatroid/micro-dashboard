@@ -87,7 +87,8 @@ function select(state) {
     isFetching: app.isFetchingQuery,
     response: app.queryResponse,
     service: app.queryService,
-    method: app.queryMethod
+    method: app.queryMethod,
+    body: app.queryBody
   }
 
   const registry = {
