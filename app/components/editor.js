@@ -16,14 +16,6 @@ export default React.createClass({
     onQueryMethodChange: React.PropTypes.func.isRequired
   },
 
-  getInitialState: function() {
-    return {
-      service: '',
-      method: '',
-      request: ''
-    }
-  },
-
   _handleServiceChange: function(event) {
     this.props.onQueryServiceChange(event.target.value)
   },
