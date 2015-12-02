@@ -21,6 +21,7 @@ export default React.createClass({
     this.editor = ace.edit(domNode)
     this.editor.getSession().setMode('ace/mode/javascript')
     this.editor.setShowPrintMargin(false)
+    this.editor.$blockScrolling = Infinity
     this.editor.setValue(this.props.content, 1)
   },
 
