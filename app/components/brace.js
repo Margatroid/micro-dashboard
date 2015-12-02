@@ -12,7 +12,7 @@ export default React.createClass({
   },
 
   componentDidUpdate: function() {
-    this.editor.setValue(this.props.content)
+    this.editor.setValue(this.props.content, 1)
   },
 
   _mountEditor(domNode) {
@@ -21,7 +21,7 @@ export default React.createClass({
     this.editor = ace.edit(domNode)
     this.editor.getSession().setMode('ace/mode/javascript')
     this.editor.setShowPrintMargin(false)
-    this.editor.setValue(this.props.content)
+    this.editor.setValue(this.props.content, 1)
   },
 
   render: function() {
