@@ -86,7 +86,7 @@ export function fetchQueryResponse(service, method, requestData) {
       .send({ method: method })
       .send({ request: requestData })
       .end((error, response) => {
-        dispatch(receiveQuery(response))
+        dispatch(receiveQuery(JSON.parse(response.text)))
       })
   }
 }
