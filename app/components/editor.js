@@ -8,7 +8,7 @@ export default React.createClass({
   displayName: 'Editor',
 
   propTypes: {
-    submit: React.PropTypes.func.isRequired,
+    onSubmit: React.PropTypes.func.isRequired,
     height: React.PropTypes.number.isRequired,
     registry: React.PropTypes.object.isRequired,
     query: React.PropTypes.object.isRequired,
@@ -25,7 +25,12 @@ export default React.createClass({
   },
 
   _onSubmit: function() {
-    this.props.submit(this.state.service, this.state.method, this.state.request)
+    const { service, method, body } = this.props.query
+    this.props.onSubmit(service, method, body)
+  },
+
+  _onEditorChange(event, value) {
+    this.props.onQueryBodyChange(value)
   },
 
   render: function() {
@@ -80,7 +85,7 @@ export default React.createClass({
         menuItems={methodMenuItems} />
 
       <div style={styles.editor}>
-        <Brace content={this.props.query.body} />
+        <Brace onChange={this._onEditorChange} content={this.props.query.body} />
       </div>
     </div>
   }

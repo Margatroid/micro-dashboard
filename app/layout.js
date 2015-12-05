@@ -2,7 +2,7 @@ import React from 'react'
 import { AppBar, FontIcon, Styles, Tabs, Tab } from 'material-ui'
 import { pushState } from 'redux-router'
 import { connect } from 'react-redux'
-import { fetchRegistry, setQueryService, setQueryMethod } from './actions'
+import { fetchQueryResponse, fetchRegistry, setQueryService, setQueryMethod, setQueryBody } from './actions'
 
 const { Colors } = Styles
 
@@ -15,6 +15,14 @@ const Layout = React.createClass({
 
   _handleQueryMethodChange: function(method) {
     this.props.dispatch(setQueryMethod(method))
+  },
+
+  _handleQueryBodyChange: function(body) {
+    this.props.dispatch(setQueryBody(body))
+  },
+
+  _handleEditorSubmit: function(service, method, request) {
+    this.props.dispatch(fetchQueryResponse(service, method, request))
   },
 
   _changeToExplorerPage: function() {
@@ -54,7 +62,9 @@ const Layout = React.createClass({
         navigateToService: this._navigateToService,
         onQueryServiceChange: this._handleQueryServiceChange,
         onQueryMethodChange: this._handleQueryMethodChange,
-        changeToQueryPage: this._changeToQueryPage
+        onQueryBodyChange: this._handleQueryBodyChange,
+        changeToQueryPage: this._changeToQueryPage,
+        onEditorSubmit: this._handleEditorSubmit
       }
 
       return React.cloneElement(child, additionalProps)

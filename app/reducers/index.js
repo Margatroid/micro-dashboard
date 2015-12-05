@@ -4,7 +4,8 @@ import {
   REQUEST_QUERY,
   RECEIVE_QUERY,
   SET_QUERY_SERVICE,
-  SET_QUERY_METHOD
+  SET_QUERY_METHOD,
+  SET_QUERY_BODY
 } from '../actions'
 import { combineReducers } from 'redux'
 import { routerStateReducer } from 'redux-router'
@@ -49,6 +50,10 @@ function appReducer(state = {
           state.registry.get(state.queryService).values().next().value,
           action.method
         )
+      })
+    case SET_QUERY_BODY:
+      return Object.assign({}, state, {
+        queryBody: action.body
       })
     case REQUEST_QUERY:
       return Object.assign({}, state, {

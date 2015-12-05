@@ -1,7 +1,6 @@
 import React from 'react'
 import { Paper } from 'material-ui'
 import Editor from '../components/editor'
-import { fetchQueryResponse } from '../actions'
 
 export default React.createClass({
   displayName: 'Query',
@@ -16,10 +15,6 @@ export default React.createClass({
 
   _handleResize: function() {
     this.setState(this._getState())
-  },
-
-  _submitQuery: function(service, method, request) {
-    this.props.dispatch(fetchQueryResponse(service, method, request))
   },
 
   _getStyles: function() {
@@ -55,11 +50,12 @@ export default React.createClass({
 
     return <section style={styles.wrapper}>
       <Paper style={styles.editor} zDepth={1} rounded={false}>
-        <Editor submit={this._submitQuery}
+        <Editor onSubmit={this.props.onEditorSubmit}
           registry={this.props.registry}
           query={this.props.query}
           onQueryServiceChange={this.props.onQueryServiceChange}
           onQueryMethodChange={this.props.onQueryMethodChange}
+          onQueryBodyChange={this.props.onQueryBodyChange}
           height={this.state.editorHeight} />
       </Paper>
 

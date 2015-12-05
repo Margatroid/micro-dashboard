@@ -18,6 +18,14 @@ export function setQueryMethod(method) {
   }
 }
 
+export const SET_QUERY_BODY = 'SET_QUERY_BODY'
+export function setQueryBody(body) {
+  return {
+    type: SET_QUERY_BODY,
+    body: body
+  }
+}
+
 export const REQUEST_REGISTRY = 'REQUEST_REGISTRY'
 export function requestRegistry() {
   return {
@@ -76,7 +84,7 @@ export function fetchQueryResponse(service, method, requestData) {
       .type('form')
       .send({ service: service })
       .send({ method: method })
-      .send({ requestData: requestData })
+      .send({ request: requestData })
       .end((error, response) => {
         dispatch(receiveQuery(response))
       })
