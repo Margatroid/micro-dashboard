@@ -1,6 +1,25 @@
 import React from 'react'
-import hljs from 'highlight.js'
 import { Card, CardActions, CardHeader, CardText, CardTitle, FontIcon, RaisedButton, Styles } from 'material-ui'
+
+function formatEndpoint(input, indentLevel) {
+  if (!input) return ''
+
+  const indent = Array(indentLevel).join('    ')
+  const fieldSeparator = `,\n`
+
+  let output = ''
+
+  if (input.Values) {
+    output =
+`${indent}${input.Type} ${input.Name} {
+${input.Values.map((field) => formatEndpoint(field, indentLevel + 1)).join(fieldSeparator)}
+${indent}}`
+  } else {
+    output = `${indent}${input.Type} ${input.Name}`
+  }
+
+  return output
+}
 
 const { Colors } = Styles
 
@@ -44,12 +63,6 @@ export default React.createClass({
       <CardTitle subtitle={subtitle} />
 
       {this.props.endpoints.map((endpoint) => {
-
-        const highlightBlock = (domNode) => {
-          if (!domNode) return
-          hljs.highlightBlock(domNode)
-        }
-
         return <Card key={endpoint.Name}
           initiallyExpanded={false}>
 
@@ -70,14 +83,16 @@ export default React.createClass({
 
             <CardText>
               <pre>
-                <code ref={highlightBlock} className='json'>
-                  {JSON.stringify(endpoint.Request, null, 4)}
+                <code>
+                  {formatEndpoint(endpoint.Request, 1)}
                 </code>
               </pre>
 
+              <br/>
+
               <pre>
-                <code ref={highlightBlock} className='json'>
-                  {JSON.stringify(endpoint.Response, null, 4)}
+                <code>
+                  {formatEndpoint(endpoint.Response, 1)}
                 </code>
               </pre>
             </CardText>
