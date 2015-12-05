@@ -7,6 +7,11 @@ require('brace/mode/javascript')
 export default React.createClass({
   displayName: 'Brace',
 
+  propTypes: {
+    content: React.PropTypes.string,
+    onChange: React.PropTypes.func
+  },
+
   componentWillUnmount: function() {
     this.editor.destroy()
   },
@@ -23,9 +28,12 @@ export default React.createClass({
     this.editor.setShowPrintMargin(false)
     this.editor.$blockScrolling = Infinity
     this.editor.setValue(this.props.content, 1)
-    this.editor.on('blur', (event) => {
-      this.props.onChange(event, this.editor.getValue())
-    })
+
+    if (this.props.onChange) {
+      this.editor.on('blur', (event) => {
+        this.props.onChange(event, this.editor.getValue())
+      })
+    }
   },
 
   render: function() {

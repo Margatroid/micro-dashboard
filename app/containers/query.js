@@ -1,5 +1,6 @@
 import React from 'react'
-import { Paper } from 'material-ui'
+import { CardTitle, Paper } from 'material-ui'
+import Brace from '../components/brace'
 import Editor from '../components/editor'
 
 export default React.createClass({
@@ -59,7 +60,10 @@ export default React.createClass({
           height={this.state.editorHeight} />
       </Paper>
 
-      <Paper style={styles.results} zDepth={1} rounded={false} />
+      <Paper style={styles.results} zDepth={1} rounded={false} >
+        <CardTitle title='Response' subtitle='' />
+        <Brace content={JSON.stringify(this.props.query.response, null, 4)} />
+      </Paper>
     </section>
   }
 })
