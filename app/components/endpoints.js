@@ -7,18 +7,13 @@ function formatEndpoint(input, indentLevel) {
   const indent = Array(indentLevel).join('    ')
   const fieldSeparator = `,\n`
 
-  let output = ''
-
   if (input.Values) {
-    output =
-`${indent}${input.Type} ${input.Name} {
+    return `${indent}${input.Type} ${input.Name} {
 ${input.Values.map((field) => formatEndpoint(field, indentLevel + 1)).join(fieldSeparator)}
 ${indent}}`
-  } else {
-    output = `${indent}${input.Type} ${input.Name}`
   }
 
-  return output
+  return `${indent}${input.Type} ${input.Name}`
 }
 
 const { Colors } = Styles
