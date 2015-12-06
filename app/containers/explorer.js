@@ -42,6 +42,7 @@ export default React.createClass({
       body = <Service name={serviceName}
         changeToQueryPage={this.props.changeToQueryPage}
         onQueryServiceChange={this.props.onQueryServiceChange}
+        onQueryMethodChange={this.props.onQueryMethodChange}
         service={serviceDetails} />
     } else {
       body = <ServicesList registry={this.props.registry}

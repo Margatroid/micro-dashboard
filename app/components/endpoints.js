@@ -25,11 +25,13 @@ export default React.createClass({
     endpoints: React.PropTypes.array.isRequired,
     service: React.PropTypes.string.isRequired,
     changeToQueryPage: React.PropTypes.func.isRequired,
-    onQueryServiceChange: React.PropTypes.func.isRequired
+    onQueryServiceChange: React.PropTypes.func.isRequired,
+    onQueryMethodChange: React.PropTypes.func.isRequired
   },
 
   _onNewQueryClick: function(endpoint) {
     this.props.onQueryServiceChange(this.props.service)
+    this.props.onQueryMethodChange(endpoint.Name)
     this.props.changeToQueryPage()
   },
 

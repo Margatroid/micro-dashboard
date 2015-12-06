@@ -6,7 +6,9 @@ export default React.createClass({
   displayName: 'Service',
 
   propTypes: {
-    service: React.PropTypes.object
+    service: React.PropTypes.object,
+    onQueryServiceChange: React.PropTypes.func,
+    onQueryMethodChange: React.PropTypes.func
   },
 
   render: function() {
@@ -22,6 +24,7 @@ export default React.createClass({
       <Endpoints service={this.props.name}
         changeToQueryPage={this.props.changeToQueryPage}
         onQueryServiceChange={this.props.onQueryServiceChange}
+        onQueryMethodChange={this.props.onQueryMethodChange}
         endpoints={this.props.service.Endpoints} />
     </div>
   }
