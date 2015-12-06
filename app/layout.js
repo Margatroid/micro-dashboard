@@ -49,8 +49,11 @@ const Layout = React.createClass({
     }
 
     const icon = <FontIcon style={iconStyle}
+      onClick={this._changeToExplorerPage}
       className='material-icons'
       color={Colors.grey50}>cloud</FontIcon>
+
+    const title = <span onClick={this._changeToExplorerPage}>Micro dashboard</span>
 
     const appBarStyle = {position: 'absolute', top: 0, left: 0}
     const initialSelectedIndex = this.props.location.pathname.includes('/query') ? 1 : 0
@@ -73,7 +76,7 @@ const Layout = React.createClass({
     const tabsValue = (this.props.router.location.pathname == '/query') ? '/query' : '/explorer'
 
     return <div>
-      <AppBar style={appBarStyle} zDepth={0} iconElementLeft={icon} title='Micro dashboard'>
+      <AppBar style={appBarStyle} zDepth={0} iconElementLeft={icon} title={title}>
         <Tabs initialSelectedIndex={initialSelectedIndex}
           value={tabsValue}
           style={{width: 400}}>
