@@ -39,7 +39,7 @@ export default React.createClass({
     const styles = {
       marginRight: 20,
       flex: 1,
-      padding: '0 40 40 40',
+      padding: '20 40 40 40',
       display: 'flex',
       flexDirection: 'column',
 

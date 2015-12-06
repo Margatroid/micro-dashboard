@@ -28,12 +28,12 @@ export default React.createClass({
       results: {
         marginLeft: 20,
         flex: 1,
-        padding: '0 40 40 40',
+        padding: 40,
         display: 'flex',
         flexDirection: 'column',
 
         title: {
-          height: 36
+          height: 50
         },
         editor: {
           flexGrow: 2,
@@ -64,7 +64,7 @@ export default React.createClass({
         height={this.state.editorHeight} />
 
       <Paper style={styles.results} zDepth={1} rounded={false} >
-        <CardTitle style={styles.results.title} title='Response' subtitle='' />
+        <CardTitle style={styles.results.title} title='Response' />
         <div style={styles.results.editor}>
           <Brace content={JSON.stringify(this.props.query.response, null, 4)} />
         </div>
