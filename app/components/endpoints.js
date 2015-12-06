@@ -29,7 +29,7 @@ export default React.createClass({
   },
 
   _onNewQueryClick: function(endpoint) {
-    this.props.onQueryServiceChange(this.props.service, endpoint.Name)
+    this.props.onQueryServiceChange(this.props.service)
     this.props.changeToQueryPage()
   },
 

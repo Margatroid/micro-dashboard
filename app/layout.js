@@ -9,8 +9,8 @@ const { Colors } = Styles
 const Layout = React.createClass({
   displayName: 'Layout',
 
-  _handleQueryServiceChange: function(service, method) {
-    this.props.dispatch(setQueryService(service, method))
+  _handleQueryServiceChange: function(service) {
+    this.props.dispatch(setQueryService(service))
   },
 
   _handleQueryMethodChange: function(method) {
