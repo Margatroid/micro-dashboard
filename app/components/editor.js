@@ -1,5 +1,5 @@
 import React from 'react'
-import { FloatingActionButton, FontIcon, Styles, SelectField } from 'material-ui'
+import { FloatingActionButton, FontIcon, Paper, Styles, SelectField } from 'material-ui'
 import Brace from './brace'
 
 const { Colors } = Styles
@@ -34,15 +34,35 @@ export default React.createClass({
   },
 
   render: function() {
-    const { height, registry, query } = this.props
+    const { registry, query } = this.props
 
     const styles = {
+      marginRight: 20,
+      flex: 1,
+      padding: '0 40 40 40',
+      display: 'flex',
+      flexDirection: 'column',
+
       editor: {
-        height: height - 350,
-        marginTop: 50
+        flexGrow: 2,
+        display: 'flex',
+        paddingTop: 40
       },
-      nameField: {
-        marginRight: 50
+
+      controls: {
+        display: 'flex',
+        height: 160,
+
+        fields: {
+          width: '100%'
+        },
+
+        run: {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          paddingLeft: 40
+        }
       }
     }
 
@@ -63,30 +83,39 @@ export default React.createClass({
       }
     }
 
-    return <div>
-      <FloatingActionButton onClick={this._onSubmit} style={{float: 'right'}}>
-        <FontIcon style={{fontSize: 55}}
-          color={Colors.pink50}
-          className='material-icons'>play_arrow</FontIcon>
-      </FloatingActionButton>
+    return <Paper style={styles} zDepth={1} rounded={false}>
+      <div style={styles.controls}>
+        <div style={styles.controls.fields}>
+          <SelectField
+            value={query.service}
+            floatingLabelText='Service'
+            onChange={this._handleServiceChange}
+            style={styles.controls.fields.name}
+            fullWidth={true}
+            menuItems={serviceMenuItems} />
 
-      <SelectField
-        value={query.service}
-        floatingLabelText='Service'
-        onChange={this._handleServiceChange}
-        style={styles.nameField}
-        menuItems={serviceMenuItems} />
+          <SelectField
+            value={query.method}
+            floatingLabelText='Method'
+            onChange={this._handleMethodChange}
+            disabled={!methodMenuItems.length}
+            style={styles.controls.fields.method}
+            fullWidth={true}
+            menuItems={methodMenuItems} />
+          </div>
 
-      <SelectField
-        value={query.method}
-        floatingLabelText='Method'
-        onChange={this._handleMethodChange}
-        disabled={!methodMenuItems.length}
-        menuItems={methodMenuItems} />
+          <div style={styles.controls.run}>
+            <FloatingActionButton onClick={this._onSubmit}>
+              <FontIcon style={{fontSize: 55}}
+                color={Colors.pink50}
+                className='material-icons'>play_arrow</FontIcon>
+            </FloatingActionButton>
+        </div>
+      </div>
 
       <div style={styles.editor}>
         <Brace onChange={this._onEditorChange} content={this.props.query.body} />
       </div>
-    </div>
+    </Paper>
   }
 })

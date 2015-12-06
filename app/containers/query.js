@@ -25,15 +25,20 @@ export default React.createClass({
         display: 'flex',
         height: this.state.editorHeight - 150
       },
-      editor: {
-        marginRight: 20,
-        flex: 1,
-        padding: 40
-      },
       results: {
         marginLeft: 20,
         flex: 1,
-        padding: 20
+        padding: '0 40 40 40',
+        display: 'flex',
+        flexDirection: 'column',
+
+        title: {
+          height: 36
+        },
+        editor: {
+          flexGrow: 2,
+          display: 'flex'
+        }
       }
     }
   },
@@ -50,19 +55,19 @@ export default React.createClass({
     const styles = this._getStyles()
 
     return <section style={styles.wrapper}>
-      <Paper style={styles.editor} zDepth={1} rounded={false}>
-        <Editor onSubmit={this.props.onEditorSubmit}
-          registry={this.props.registry}
-          query={this.props.query}
-          onQueryServiceChange={this.props.onQueryServiceChange}
-          onQueryMethodChange={this.props.onQueryMethodChange}
-          onQueryBodyChange={this.props.onQueryBodyChange}
-          height={this.state.editorHeight} />
-      </Paper>
+      <Editor onSubmit={this.props.onEditorSubmit}
+        registry={this.props.registry}
+        query={this.props.query}
+        onQueryServiceChange={this.props.onQueryServiceChange}
+        onQueryMethodChange={this.props.onQueryMethodChange}
+        onQueryBodyChange={this.props.onQueryBodyChange}
+        height={this.state.editorHeight} />
 
       <Paper style={styles.results} zDepth={1} rounded={false} >
-        <CardTitle title='Response' subtitle='' />
-        <Brace content={JSON.stringify(this.props.query.response, null, 4)} />
+        <CardTitle style={styles.results.title} title='Response' subtitle='' />
+        <div style={styles.results.editor}>
+          <Brace content={JSON.stringify(this.props.query.response, null, 4)} />
+        </div>
       </Paper>
     </section>
   }
