@@ -3,6 +3,8 @@ import {
   RECEIVE_REGISTRY,
   REQUEST_QUERY,
   RECEIVE_QUERY,
+  REQUEST_SERVICE,
+  RECEIVE_SERVICE,
   SET_QUERY_SERVICE,
   SET_QUERY_METHOD,
   SET_QUERY_BODY
@@ -15,6 +17,7 @@ function appReducer(state = {
   registry: new Map(),
   isFetchingRegistry: false,
   isFetchingQuery: false,
+  isFetchingService: false,
   queryResponse: {},
   queryService: '',
   queryMethod: '',
@@ -30,6 +33,19 @@ function appReducer(state = {
       return Object.assign({}, state, {
         isFetchingRegistry: false,
         registry: action.registry
+      })
+    case REQUEST_SERVICE:
+      return Object.assign({}, state, {
+        isFetchingService: true
+      })
+    case RECEIVE_SERVICE:
+      // Clone registry to avoid mutating the current state.
+      const registry = new Map(state.registry)
+      registry.set(action.service, action.versions)
+
+      return Object.assign({}, state, {
+        isFetchingService: false,
+        registry: registry
       })
     case SET_QUERY_SERVICE:
       // Find the first endpoint this service's first version provides.

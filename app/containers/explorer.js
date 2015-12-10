@@ -9,6 +9,10 @@ const Typography = Styles.Typography
 export default React.createClass({
   displayName: 'Explorer',
 
+  propTypes: {
+    fetchService: React.PropTypes.func
+  },
+
   render: function() {
     const styles = {
       wrapper: {
@@ -37,6 +41,7 @@ export default React.createClass({
         changeToQueryPage={this.props.changeToQueryPage}
         onQueryServiceChange={this.props.onQueryServiceChange}
         onQueryMethodChange={this.props.onQueryMethodChange}
+        fetchService={this.props.fetchService}
         service={this.props.registry.services.get(serviceName)} />
     } else {
       // When viewing the index of all services.

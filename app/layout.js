@@ -2,7 +2,12 @@ import React from 'react'
 import { AppBar, FontIcon, Styles, Tabs, Tab } from 'material-ui'
 import { pushState } from 'redux-router'
 import { connect } from 'react-redux'
-import { fetchQueryResponse, fetchRegistry, setQueryService, setQueryMethod, setQueryBody } from './actions'
+import { fetchQueryResponse,
+  fetchRegistry,
+  fetchService,
+  setQueryService,
+  setQueryMethod,
+  setQueryBody } from './actions'
 
 const { Colors } = Styles
 
@@ -23,6 +28,10 @@ const Layout = React.createClass({
 
   _handleEditorSubmit: function(service, method, request) {
     this.props.dispatch(fetchQueryResponse(service, method, request))
+  },
+
+  _fetchService: function(service) {
+    this.props.dispatch(fetchService(service))
   },
 
   _changeToExplorerPage: function() {
@@ -63,6 +72,7 @@ const Layout = React.createClass({
         registry: this.props.registry,
         query: this.props.query,
         navigateToService: this._navigateToService,
+        fetchService: this._fetchService,
         onQueryServiceChange: this._handleQueryServiceChange,
         onQueryMethodChange: this._handleQueryMethodChange,
         onQueryBodyChange: this._handleQueryBodyChange,

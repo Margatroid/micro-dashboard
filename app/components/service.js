@@ -8,7 +8,12 @@ export default React.createClass({
   propTypes: {
     service: React.PropTypes.object,
     onQueryServiceChange: React.PropTypes.func,
-    onQueryMethodChange: React.PropTypes.func
+    onQueryMethodChange: React.PropTypes.func,
+    fetchService: React.PropTypes.func
+  },
+
+  componentDidMount: function() {
+    this.props.fetchService(this.props.name)
   },
 
   render: function() {

@@ -1,5 +1,6 @@
 /* global require */
 const request = require('superagent')
+const registryPath = `//${window.location.hostname}:8082/registry`
 
 export const SET_QUERY_SERVICE = 'SET_QUERY_SERVICE'
 export function setQueryService(service) {
@@ -40,6 +41,23 @@ export function receiveRegistry(registry) {
   }
 }
 
+export const REQUEST_SERVICE = 'REQUEST_SERVICE'
+export function requestService() {
+  return {
+    type: REQUEST_SERVICE
+  }
+}
+
+export const RECEIVE_SERVICE = 'RECEIVE_SERVICE'
+export function receiveService(service, versions) {
+  return {
+    type: RECEIVE_SERVICE,
+    service: service,
+    versions: versions
+  }
+}
+
+
 export const REQUEST_QUERY = 'REQUEST_QUERY'
 export function requestQuery() {
   return {
@@ -59,7 +77,7 @@ export function fetchRegistry() {
   return function (dispatch) {
     dispatch(requestRegistry)
 
-    request.get(`//${window.location.hostname}:8082/registry`)
+    request.get(registryPath)
       .set('Content-Type', 'application/json')
       .end((error, response) => {
         let services = new Map()
@@ -71,6 +89,26 @@ export function fetchRegistry() {
       })
   }
 }
+
+export function fetchService(service) {
+  return function (dispatch) {
+    dispatch(requestService)
+
+    request.get(registryPath)
+      .query({ service: service })
+      .set('Content-Type', 'application/json')
+      .end((error, response) => {
+        let versions = new Map()
+
+        response.body.services.forEach((service) => {
+          versions.set(service.Version, service)
+        })
+
+        dispatch(receiveService(service, versions))
+      })
+  }
+}
+
 
 export function fetchQueryResponse(service, method, requestData) {
   return function(dispatch) {
