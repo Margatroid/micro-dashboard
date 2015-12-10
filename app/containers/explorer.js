@@ -31,20 +31,13 @@ export default React.createClass({
 
     let body
     if (this.props.children) {
-      // When viewing one service.
       const serviceName = this.props.params.name
-      const services = this.props.registry.services
-
-      let serviceDetails
-      if (services.has(serviceName)) {
-        serviceDetails = services.get(serviceName).get(this.props.params.version)
-      }
-
+      // When viewing one service.
       body = <Service name={serviceName}
         changeToQueryPage={this.props.changeToQueryPage}
         onQueryServiceChange={this.props.onQueryServiceChange}
         onQueryMethodChange={this.props.onQueryMethodChange}
-        service={serviceDetails} />
+        service={this.props.registry.services.get(serviceName)} />
     } else {
       // When viewing the index of all services.
       body = <ServicesList registry={this.props.registry}
