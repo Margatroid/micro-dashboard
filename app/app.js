@@ -36,7 +36,7 @@ ReactDOM.render(
           <IndexRoute component={Explorer} />
 
           <Route path='explorer' component={Explorer} >
-            <Route path=':name/:version' component={Service} />
+            <Route path=':name' component={Service} />
           </Route>
 
           <Route path='query' component={Query} />

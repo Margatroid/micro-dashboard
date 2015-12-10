@@ -33,8 +33,8 @@ const Layout = React.createClass({
     this.props.dispatch(pushState(null, '/query'))
   },
 
-  _navigateToService(name, version) {
-    this.props.dispatch(pushState(null, `/explorer/${name}/${version}`))
+  _navigateToService(name) {
+    this.props.dispatch(pushState(null, `/explorer/${name}`))
   },
 
   componentDidMount: function() {

@@ -24,7 +24,7 @@ export default React.createClass({
           key={`${serviceName}`}
           leftAvatar={serviceIcon}
           primaryText={serviceName}
-          onClick={() => {this.props.onServiceClick(serviceName, version)}} />
+          onClick={() => {this.props.onServiceClick(serviceName)}} />
       )
     })
 
