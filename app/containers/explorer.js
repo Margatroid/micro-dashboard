@@ -31,6 +31,7 @@ export default React.createClass({
 
     let body
     if (this.props.children) {
+      // When viewing one service.
       const serviceName = this.props.params.name
       const services = this.props.registry.services
 
@@ -45,6 +46,7 @@ export default React.createClass({
         onQueryMethodChange={this.props.onQueryMethodChange}
         service={serviceDetails} />
     } else {
+      // When viewing the index of all services.
       body = <ServicesList registry={this.props.registry}
         onServiceClick={this.props.navigateToService} />
     }

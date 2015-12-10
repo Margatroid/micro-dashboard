@@ -19,16 +19,13 @@ export default React.createClass({
 
     let services = []
     this.props.registry.services.forEach((versions, serviceName) => {
-      versions.forEach((service, version) => {
-        services.push(
-          <ListItem
-            key={`${serviceName}${version}`}
-            leftAvatar={serviceIcon}
-            primaryText={serviceName}
-            onClick={() => {this.props.onServiceClick(serviceName, version)}}
-            secondaryText={`Version: ${version}`} />
-        )
-      })
+      services.push(
+        <ListItem
+          key={`${serviceName}`}
+          leftAvatar={serviceIcon}
+          primaryText={serviceName}
+          onClick={() => {this.props.onServiceClick(serviceName, version)}} />
+      )
     })
 
     return <div>
