@@ -59,15 +59,12 @@ export function fetchRegistry() {
   return function (dispatch) {
     dispatch(requestRegistry)
 
-    request.get('//localhost:8080/dashboard/registry/all')
+    request.get(`//${window.location.hostname}:8082/registry`)
+      .set('Content-Type', 'application/json')
       .end((error, response) => {
         let services = new Map()
-        response.body.forEach((service) => {
-          let versions = new Map()
-          service.forEach((serviceVersion) => {
-            versions.set(serviceVersion.Version || 'unknown', serviceVersion)
-          })
-          services.set(service[0].Name, versions)
+        response.body.services.forEach((service) => {
+          services.set(service.Name, null)
         })
 
         dispatch(receiveRegistry(services))
