@@ -46,6 +46,7 @@ export default React.createClass({
     } else {
       // When viewing the index of all services.
       body = <ServicesList registry={this.props.registry}
+        fetchRegistry={this.props.fetchRegistry}
         onServiceClick={this.props.navigateToService} />
     }
 

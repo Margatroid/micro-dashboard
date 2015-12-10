@@ -30,6 +30,10 @@ const Layout = React.createClass({
     this.props.dispatch(fetchQueryResponse(service, method, request))
   },
 
+  _fetchRegistry: function() {
+    this.props.dispatch(fetchRegistry())
+  },
+
   _fetchService: function(service) {
     this.props.dispatch(fetchService(service))
   },
@@ -44,10 +48,6 @@ const Layout = React.createClass({
 
   _navigateToService(name) {
     this.props.dispatch(pushState(null, `/explorer/${name}`))
-  },
-
-  componentDidMount: function() {
-    this.props.dispatch(fetchRegistry())
   },
 
   render: function() {
@@ -73,6 +73,7 @@ const Layout = React.createClass({
         query: this.props.query,
         navigateToService: this._navigateToService,
         fetchService: this._fetchService,
+        fetchRegistry: this._fetchRegistry,
         onQueryServiceChange: this._handleQueryServiceChange,
         onQueryMethodChange: this._handleQueryMethodChange,
         onQueryBodyChange: this._handleQueryBodyChange,

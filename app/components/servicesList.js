@@ -7,7 +7,12 @@ export default React.createClass({
 
   propTypes: {
     registry: React.PropTypes.object.isRequired,
+    fetchRegistry: React.PropTypes.func,
     onServiceClick: React.PropTypes.func.isRequired
+  },
+
+  componentDidMount: function() {
+    this.props.fetchRegistry()
   },
 
   render: function() {
