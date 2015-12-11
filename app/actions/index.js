@@ -83,12 +83,9 @@ export function fetchRegistry() {
     request.get(registryPath)
       .set('Content-Type', 'application/json')
       .end((error, response) => {
-        let services = new Map()
-        response.body.services.forEach((service) => {
-          services.set(service.Name, null)
-        })
-
-        dispatch(receiveRegistry(services))
+        dispatch(receiveRegistry(
+          response.body.services.map((service) => service.Name)
+        ))
       })
   }
 }

@@ -24,15 +24,11 @@ export default React.createClass({
   propTypes: {
     endpoints: React.PropTypes.array,
     service: React.PropTypes.string.isRequired,
-    changeToQueryPage: React.PropTypes.func.isRequired,
-    onQueryServiceChange: React.PropTypes.func.isRequired,
-    onQueryMethodChange: React.PropTypes.func.isRequired
+    onNewQueryClick: React.PropTypes.func
   },
 
   _onNewQueryClick: function(endpoint) {
-    this.props.onQueryServiceChange(this.props.service)
-    this.props.onQueryMethodChange(endpoint.Name)
-    this.props.changeToQueryPage()
+    this.props.onNewQueryClick(this.props.service, endpoint)
   },
 
   render: function() {
@@ -73,7 +69,7 @@ export default React.createClass({
           <div style={styles.endpoint} expandable={true}>
             <CardActions style={styles.endpoint.newQuery}>
               <RaisedButton onClick={() => {
-                this._onNewQueryClick(endpoint) }}
+                this._onNewQueryClick(endpoint.Name) }}
                 primary={true}
                 label='Create new query'/>
             </CardActions>

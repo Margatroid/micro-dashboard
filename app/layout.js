@@ -14,6 +14,12 @@ const { Colors } = Styles
 const Layout = React.createClass({
   displayName: 'Layout',
 
+  _handleCreateNewQuery: function(service, endpoint) {
+    this._handleQueryServiceChange(service)
+    this._handleQueryMethodChange(endpoint)
+    this._changeToQueryPage()
+  },
+
   _handleQueryServiceChange: function(service) {
     this.props.dispatch(setQueryService(service))
     this._fetchService(service)
@@ -78,7 +84,7 @@ const Layout = React.createClass({
         onQueryServiceChange: this._handleQueryServiceChange,
         onQueryMethodChange: this._handleQueryMethodChange,
         onQueryBodyChange: this._handleQueryBodyChange,
-        changeToQueryPage: this._changeToQueryPage,
+        onNewQueryClick: this._handleCreateNewQuery,
         onEditorSubmit: this._handleEditorSubmit
       }
 

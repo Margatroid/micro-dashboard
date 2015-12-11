@@ -10,7 +10,8 @@ export default React.createClass({
   displayName: 'Explorer',
 
   propTypes: {
-    fetchService: React.PropTypes.func
+    fetchService: React.PropTypes.func,
+    onNewQueryClick: React.PropTypes.func
   },
 
   render: function() {
@@ -38,10 +39,8 @@ export default React.createClass({
       const serviceName = this.props.params.name
       // When viewing one service.
       body = <Service name={serviceName}
-        changeToQueryPage={this.props.changeToQueryPage}
-        onQueryServiceChange={this.props.onQueryServiceChange}
-        onQueryMethodChange={this.props.onQueryMethodChange}
         fetchService={this.props.fetchService}
+        onNewQueryClick={this.props.onNewQueryClick}
         service={this.props.registry.services.get(serviceName)} />
     } else {
       // When viewing the index of all services.

@@ -30,9 +30,19 @@ function appReducer(state = {
         isFetchingRegistry: true
       })
     case RECEIVE_REGISTRY:
+      const newRegistry = new Map(state.registry)
+
+      action.registry.forEach((serviceName) => {
+        if (state.registry.has(serviceName)) {
+          newRegistry.set(serviceName, state.registry.get(serviceName))
+        } else {
+          newRegistry.set(serviceName, null)
+        }
+      })
+
       return Object.assign({}, state, {
         isFetchingRegistry: false,
-        registry: action.registry
+        registry: newRegistry
       })
     case REQUEST_SERVICE:
       return Object.assign({}, state, {

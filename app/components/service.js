@@ -8,10 +8,14 @@ export default React.createClass({
 
   propTypes: {
     service: React.PropTypes.object,
-    onQueryServiceChange: React.PropTypes.func,
-    onQueryMethodChange: React.PropTypes.func,
-    changeToQueryPage: React.PropTypes.func,
-    fetchService: React.PropTypes.func
+    fetchService: React.PropTypes.func,
+    onNewQueryClick: React.PropTypes.func
+  },
+
+  getInitialState: function() {
+    if (this.props.service) return { version: this.props.service.keys().next().value }
+
+    return { version: null }
   },
 
   componentDidMount: function() {
@@ -43,9 +47,7 @@ export default React.createClass({
         nodes={service.Nodes} />
 
       <Endpoints service={service.Name}
-        changeToQueryPage={this.props.changeToQueryPage}
-        onQueryServiceChange={this.props.onQueryServiceChange}
-        onQueryMethodChange={this.props.onQueryMethodChange}
+        onNewQueryClick={this.props.onNewQueryClick}
         endpoints={service.Endpoints} />
     </div>
   }
