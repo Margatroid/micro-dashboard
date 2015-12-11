@@ -106,14 +106,14 @@ export default React.createClass({
             style={styles.controls.fields.method}
             fullWidth={true}
             menuItems={methodMenuItems} />
-          </div>
+        </div>
 
-          <div style={styles.controls.run}>
-            <FloatingActionButton onClick={this._onSubmit}>
-              <FontIcon style={{fontSize: 55}}
-                color={Colors.pink50}
-                className='material-icons'>play_arrow</FontIcon>
-            </FloatingActionButton>
+        <div style={styles.controls.run}>
+          <FloatingActionButton onClick={this._onSubmit}>
+            <FontIcon style={{fontSize: 55}}
+              color={Colors.pink50}
+              className='material-icons'>play_arrow</FontIcon>
+          </FloatingActionButton>
         </div>
       </div>
 
