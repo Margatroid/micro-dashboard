@@ -22,6 +22,10 @@ export default React.createClass({
     if (nextProps.service) this.setState({ version: nextProps.service.keys().next().value })
   },
 
+  _handleVersionChange: function(version) {
+    this.setState({ version: version })
+  },
+
   render: function() {
     if (!this.props.service) return <p>Loading...</p>
 
@@ -29,6 +33,7 @@ export default React.createClass({
 
     return <div>
       <VersionDropdown version={this.state.version}
+        onChange={this._handleVersionChange}
         versions={[...this.props.service.keys()]} />
 
       <Nodes name={service.Name}

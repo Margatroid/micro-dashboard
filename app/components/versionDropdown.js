@@ -6,7 +6,12 @@ export default React.createClass({
 
   propTypes: {
     versions: React.PropTypes.array.isRequired,
-    version: React.PropTypes.string.isRequired
+    version: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func.isRequired
+  },
+
+  _handleVersionChange: function(event) {
+    this.props.onChange(event.target.value)
   },
 
   render: function() {
@@ -15,6 +20,7 @@ export default React.createClass({
 
     return <SelectField
       value={this.props.version}
+      onChange={this._handleVersionChange}
       floatingLabelText='Change version'
       menuItems={menuItems} />
   }
