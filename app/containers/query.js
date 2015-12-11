@@ -45,6 +45,7 @@ export default React.createClass({
 
   componentDidMount: function() {
     window.addEventListener('resize', this._handleResize)
+    this.props.fetchRegistry()
   },
 
   componentWillUnmount: function() {
