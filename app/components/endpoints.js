@@ -22,7 +22,7 @@ export default React.createClass({
   displayName: 'Endpoints',
 
   propTypes: {
-    endpoints: React.PropTypes.array.isRequired,
+    endpoints: React.PropTypes.array,
     service: React.PropTypes.string.isRequired,
     changeToQueryPage: React.PropTypes.func.isRequired,
     onQueryServiceChange: React.PropTypes.func.isRequired,
