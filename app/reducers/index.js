@@ -48,16 +48,8 @@ function appReducer(state = {
         registry: registry
       })
     case SET_QUERY_SERVICE:
-      // Find the first endpoint this service's first version provides.
-      const service = state.registry.get(action.service).values().next().value
-
-      let endpoint = ''
-      if (service.Endpoints) endpoint = service.Endpoints[0].Name
-
       return Object.assign({}, state, {
-        queryService: action.service,
-        queryMethod: endpoint,
-        queryBody: getRequestBody(service, endpoint)
+        queryService: action.service
       })
     case SET_QUERY_METHOD:
       return Object.assign({}, state, {

@@ -16,6 +16,7 @@ const Layout = React.createClass({
 
   _handleQueryServiceChange: function(service) {
     this.props.dispatch(setQueryService(service))
+    this._fetchService(service)
   },
 
   _handleQueryMethodChange: function(method) {

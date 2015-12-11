@@ -73,10 +73,14 @@ export default React.createClass({
         serviceMenuItems.push({ payload: serviceName, text: serviceName })
       }
 
+      // If we've selected a service to query.
       if (query.service) {
-        const selectedService = registry.services.get(query.service).values().next().value
-        if (selectedService.Endpoints) {
-          methodMenuItems = selectedService.Endpoints.map((endpoint) => {
+        const selectedService = registry.services.get(query.service)
+
+        // If we have fetched the endpoint data.
+        if (selectedService) {
+          const endpoints = selectedService.values().next().value.Endpoints
+          methodMenuItems = endpoints.map((endpoint) => {
             return { payload: endpoint.Name, text: endpoint.Name }
           })
         }
