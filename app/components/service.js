@@ -18,13 +18,18 @@ export default React.createClass({
     this.props.fetchService(this.props.name)
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.service) this.setState({ version: nextProps.service.keys().next().value })
+  },
+
   render: function() {
     if (!this.props.service) return <p>Loading...</p>
 
-    const service = this.props.service.values().next().value
+    const service = this.props.service.get(this.state.version)
 
     return <div>
-      <VersionDropdown versions={[...this.props.service.keys()]} />
+      <VersionDropdown version={this.state.version}
+        versions={[...this.props.service.keys()]} />
 
       <Nodes name={service.Name}
         version={service.Version}
