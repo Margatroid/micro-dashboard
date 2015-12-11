@@ -1,6 +1,9 @@
 /* global require */
 const request = require('superagent')
-const registryPath = `//${window.location.hostname}:8082/registry`
+
+const apiPath = '//178.62.6.159:8082'
+const registryPath = `${apiPath}/registry`
+const rpcPath = `${apiPath}/rpc`
 
 export const SET_QUERY_SERVICE = 'SET_QUERY_SERVICE'
 export function setQueryService(service) {
@@ -114,7 +117,7 @@ export function fetchQueryResponse(service, method, requestData) {
   return function(dispatch) {
     dispatch(requestQuery)
 
-    request.post('//localhost:8081/rpc')
+    request.post(rpcPath)
       .type('form')
       .send({ service: service })
       .send({ method: method })
