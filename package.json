@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "brace": "^0.5.1",
-    "history": "^1.13.0",
+    "history": "^1.13.1",
     "material-ui": "^0.13.1",
     "react": "^0.14.0",
     "react-addons-create-fragment": "^0.14.2",
