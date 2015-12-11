@@ -1,12 +1,11 @@
 import React from 'react'
-import { CardTitle, Table, TableHeader, TableHeaderColumn, TableBody, TableRow, TableRowColumn } from 'material-ui'
+import { Table, TableHeader, TableHeaderColumn, TableBody, TableRow, TableRowColumn } from 'material-ui'
 
 export default React.createClass({
   displayName: 'Nodes',
 
   propTypes: {
-    nodes: React.PropTypes.array.isRequired,
-    name: React.PropTypes.string.isRequired
+    nodes: React.PropTypes.array.isRequired
   },
 
   render: function() {
@@ -16,13 +15,7 @@ export default React.createClass({
       metadata: { width: '10%' }
     }
 
-    const numNodes = this.props.nodes.length
-    const subtitle =
-      `Version ${this.props.version} - ${numNodes} node${(numNodes > 1) ? 's' : ''}`
-
     return <div>
-      <CardTitle title={this.props.name} subtitle={subtitle} />
-
       <Table selectable={false}>
         <TableHeader adjustForCheckbox={false}>
           <TableRow>

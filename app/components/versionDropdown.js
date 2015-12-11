@@ -21,7 +21,7 @@ export default React.createClass({
     return <SelectField
       value={this.props.version}
       onChange={this._handleVersionChange}
-      floatingLabelText='Change version'
+      floatingLabelText='Version'
       menuItems={menuItems} />
   }
 })

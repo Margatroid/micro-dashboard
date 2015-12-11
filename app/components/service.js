@@ -1,7 +1,7 @@
 import React from 'react'
 import Nodes from './nodes'
 import Endpoints from './endpoints'
-import VersionDropdown from './versionDropdown'
+import ServiceTitle from './serviceTitle'
 
 export default React.createClass({
   displayName: 'Service',
@@ -32,9 +32,11 @@ export default React.createClass({
     const service = this.props.service.get(this.state.version)
 
     return <div>
-      <VersionDropdown version={this.state.version}
-        onChange={this._handleVersionChange}
-        versions={[...this.props.service.keys()]} />
+      <ServiceTitle version={this.state.version}
+        onVersionChange={this._handleVersionChange}
+        versions={[...this.props.service.keys()]}
+        name={service.Name}
+        nodes={service.Nodes} />
 
       <Nodes name={service.Name}
         version={service.Version}
