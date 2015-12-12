@@ -1,7 +1,9 @@
 /* global require */
 const request = require('superagent')
 
-const apiPath = '//178.62.6.159:8082'
+import { ApiPath } from '../config'
+
+const apiPath = ApiPath ? `//${ApiPath}` : `//${window.location.hostname}:8082`
 const registryPath = `${apiPath}/registry`
 const rpcPath = `${apiPath}/rpc`
 
