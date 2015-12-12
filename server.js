@@ -3,7 +3,7 @@ var app = express();
 var router = express.Router();
 
 var sendIndex = function(req, res) {
-  res.sendfile('index.html', { root: './dist' })
+  res.sendFile('index.html', { root: './dist' })
 };
 
 router.get('/explorer/*', sendIndex)
