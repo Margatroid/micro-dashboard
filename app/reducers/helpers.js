@@ -40,7 +40,7 @@ function formatEndpoint(input) {
         break
     }
 
-    output[field.Name] = fieldValue
+    output[field.name] = fieldValue
   })
 
   return output
@@ -49,10 +49,10 @@ function formatEndpoint(input) {
 const helpers = {
   // Turns the endpoint's proto3 into a JSON compatible request body.
   getRequestBody: function(service, method) {
-    for (let index in service.Endpoints) {
-      let endpoint = service.Endpoints[index]
-      if (endpoint.Name == method) {
-        return JSON.stringify(formatEndpoint(endpoint.Request.Values), null, 4)
+    for (let index in service.endpoints) {
+      let endpoint = service.endpoints[index]
+      if (endpoint.name == method) {
+        return JSON.stringify(formatEndpoint(endpoint.request.values), null, 4)
       }
     }
   }

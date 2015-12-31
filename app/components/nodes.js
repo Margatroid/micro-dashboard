@@ -31,11 +31,11 @@ export default React.createClass({
 
         <TableBody displayRowCheckbox={false}>
           {this.props.nodes.map((node) => {
-            return <TableRow key={node.Id}>
-              <TableRowColumn>{node.Id}</TableRowColumn>
-              <TableRowColumn style={widths.address}>{node.Address}</TableRowColumn>
-              <TableRowColumn style={widths.port}>{node.Port}</TableRowColumn>
-              <TableRowColumn style={widths.metadata}>{JSON.stringify(node.MetaData)}</TableRowColumn>
+            return <TableRow key={node.id}>
+              <TableRowColumn>{node.id}</TableRowColumn>
+              <TableRowColumn style={widths.address}>{node.address}</TableRowColumn>
+              <TableRowColumn style={widths.port}>{node.port}</TableRowColumn>
+              <TableRowColumn style={widths.metadata}>{JSON.stringify(node.metadata)}</TableRowColumn>
             </TableRow>
           })}
         </TableBody>

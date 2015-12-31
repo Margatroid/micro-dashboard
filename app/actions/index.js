@@ -103,7 +103,7 @@ export function fetchService(service) {
         let versions = new Map()
 
         response.body.services.forEach((service) => {
-          versions.set(service.Version, service)
+          versions.set(service.version, service)
         })
 
         dispatch(receiveService(service, versions))

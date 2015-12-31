@@ -39,16 +39,16 @@ export default React.createClass({
       <ServiceTitle version={this.state.version}
         onVersionChange={this._handleVersionChange}
         versions={[...this.props.service.keys()]}
-        name={service.Name}
-        nodes={service.Nodes} />
+        name={service.name}
+        nodes={service.nodes} />
 
-      <Nodes name={service.Name}
-        version={service.Version}
-        nodes={service.Nodes} />
+      <Nodes name={service.name}
+        version={service.version}
+        nodes={service.nodes} />
 
-      <Endpoints service={service.Name}
+      <Endpoints service={service.name}
         onNewQueryClick={this.props.onNewQueryClick}
-        endpoints={service.Endpoints} />
+        endpoints={service.endpoints} />
     </div>
   }
 })

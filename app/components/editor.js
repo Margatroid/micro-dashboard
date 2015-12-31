@@ -79,9 +79,9 @@ export default React.createClass({
 
         // If we have fetched the endpoint data.
         if (selectedService) {
-          const endpoints = selectedService.values().next().value.Endpoints
+          const endpoints = selectedService.values().next().value.endpoints
           methodMenuItems = endpoints.map((endpoint) => {
-            return { payload: endpoint.Name, text: endpoint.Name }
+            return { payload: endpoint.name, text: endpoint.name }
           })
         }
       }
