@@ -5,7 +5,7 @@ function formatEndpoint(input) {
   input.forEach((field) => {
     let fieldValue
 
-    switch (field.Type) {
+    switch (field.type) {
       // Strings
       case 'enum':
       case 'string':
