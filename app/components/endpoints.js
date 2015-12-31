@@ -7,9 +7,9 @@ function formatEndpoint(input, indentLevel) {
   const indent = Array(indentLevel).join('    ')
   const fieldSeparator = `,\n`
 
-  if (input.Values) {
+  if (input.values) {
     return `${indent}${input.type} ${input.name} {
-${input.Values.map((field) => formatEndpoint(field, indentLevel + 1)).join(fieldSeparator)}
+${input.values.map((field) => formatEndpoint(field, indentLevel + 1)).join(fieldSeparator)}
 ${indent}}`
   }
 

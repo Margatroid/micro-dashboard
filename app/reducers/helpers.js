@@ -33,10 +33,10 @@ function formatEndpoint(input) {
       case 'Any':
       case 'Struct':
       case 'ListValue':
-        fieldValue = field.Values
+        fieldValue = field.values
         break
       default:
-        fieldValue = formatEndpoint(field.Values)
+        fieldValue = formatEndpoint(field.values)
         break
     }
 
