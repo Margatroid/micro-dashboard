@@ -85,7 +85,15 @@ func main() {
 	signal.Notify(signalChannel, syscall.SIGTERM, syscall.SIGINT, syscall.SIGKILL)
 
 	log.Infof("Received signal %s", <-signalChannel)
+
+	// Stop HTTP server
 	exitChannel <- true
+
+	// Deregister service
+	log.Infof("Deregistering node: %s", node.Id)
+	if err := registry.Deregister(service); err != nil {
+		log.Fatalf("Failed to deregister service: %s", err)
+	}
 
 	<-done
 	log.Infof("Done shutting down")
