@@ -32,7 +32,7 @@ ReactDOM.render(
   <div>
     <Provider store={store}>
       <ReduxRouter>
-        <Route path='/' component={Layout}>
+        <Route path='/dashboard' component={Layout}>
           <IndexRoute component={Explorer} />
 
           <Route path='explorer' component={Explorer} >

@@ -46,15 +46,15 @@ const Layout = React.createClass({
   },
 
   _changeToExplorerPage: function() {
-    this.props.dispatch(pushState(null, '/explorer'))
+    this.props.dispatch(pushState(null, '/dashboard/explorer'))
   },
 
   _changeToQueryPage: function() {
-    this.props.dispatch(pushState(null, '/query'))
+    this.props.dispatch(pushState(null, '/dashboard/query'))
   },
 
   _navigateToService(name) {
-    this.props.dispatch(pushState(null, `/explorer/${name}`))
+    this.props.dispatch(pushState(null, `/dashboard/explorer/${name}`))
   },
 
   render: function() {
