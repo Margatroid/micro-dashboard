@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net"
 	"net/http"
 	"os"
@@ -65,7 +64,13 @@ func main() {
 	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello world!")
+		log.Infof("%s '%s' for %s", r.Method, r.URL, r.RemoteAddr)
+		http.ServeFile(w, r, "../dist/index.html")
+	})
+
+	http.HandleFunc("/app.js", func(w http.ResponseWriter, r *http.Request) {
+		log.Infof("%s '%s' for %s", r.Method, r.URL, r.RemoteAddr)
+		http.ServeFile(w, r, "../dist/app.js")
 	})
 
 	exitChannel := make(chan bool)
