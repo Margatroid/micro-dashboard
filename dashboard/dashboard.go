@@ -4,8 +4,11 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"os"
+	"os/signal"
 	"strconv"
 	"strings"
+	"syscall"
 
 	extractor "github.com/Margatroid/micro-dashboard/dashboard/extractor"
 	log "github.com/golang/glog"
@@ -65,5 +68,25 @@ func main() {
 		fmt.Fprintf(w, "Hello world!")
 	})
 
-	err = http.Serve(listener, nil)
+	exitChannel := make(chan bool)
+	done := make(chan bool)
+
+	// Start HTTP server
+	go http.Serve(listener, nil)
+
+	go func() {
+		<-exitChannel
+		log.Infof("Closing HTTP listener")
+		listener.Close()
+		done <- true
+	}()
+
+	signalChannel := make(chan os.Signal)
+	signal.Notify(signalChannel, syscall.SIGTERM, syscall.SIGINT, syscall.SIGKILL)
+
+	log.Infof("Received signal %s", <-signalChannel)
+	exitChannel <- true
+
+	<-done
+	log.Infof("Done shutting down")
 }
