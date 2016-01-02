@@ -1,11 +1,8 @@
 /* global require */
 const request = require('superagent')
 
-import { ApiPath } from '../config'
-
-const apiPath = ApiPath ? `//${ApiPath}` : `//${window.location.hostname}:8082`
-const registryPath = `${apiPath}/registry`
-const rpcPath = `${apiPath}/rpc`
+const registryPath = `/registry`
+const rpcPath = `/rpc`
 
 export const SET_QUERY_SERVICE = 'SET_QUERY_SERVICE'
 export function setQueryService(service) {
