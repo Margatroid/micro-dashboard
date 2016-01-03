@@ -1,6 +1,6 @@
 {
   "name": "micro-dashboard",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Web-based dashboard microservices toolchain micro.",
   "main": "app.js",
   "scripts": {
@@ -11,12 +11,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/Margatroid/new-website.git"
+    "url": "git+ssh://git@github.com/Margatroid/micro-dashboard.git"
   },
   "author": "Alvis Duong",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/Margatroid/new-website#readme",
-  "private": true,
+  "homepage": "https://github.com/Margatroid/micro-dashboard",
   "devDependencies": {
     "babel-loader": "^5.3.2",
     "eslint": "^1.7.3",
